@@ -28,7 +28,7 @@ export default function Projects({projects = {}, moreProjects=false}) {
           <ul className='pt-15 border-t border-black-russian md:pt-10 lg:grid grid-cols-2 gap-x-7 lg:pt-12'>
           
 				{projects[0] && projects.map((project, i) => (
-					<li key={i}>{project.id} - {project.attributes.Title}</li>			 
+					<li key={i} className={`projectForMain-${project.id}`}>{project.id} - {project.attributes.Title}</li>			 
 				))}
 					
             <ProjectItem name='Екатерининская улица Мурино' asp='aspect-[398/302]' aspTab='aspect-[805/483]' aspDesktop='aspect-[858/483]'>
