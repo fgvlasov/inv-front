@@ -26,7 +26,7 @@ export async function getStaticProps() {
     fetchAPI("/projects", {
 		sort: ['ListPosition:asc'],
 		populate: "*",
-		fields: ['title', 'Poster', 'slug'],
+		fields: ['id', 'title', 'Poster', 'slug', 'AspectRatioMobile', 'AspectRatioTab', 'AspectRatioDesktop', 'VariantImageList', 'VariantColorList'],
 		filters: {
 			ShowOnMainPage: true
 		}

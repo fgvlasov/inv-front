@@ -8,7 +8,8 @@ import ProjectItemImage from '@/components/ui/ProjectItemImage';
 import NavItemAccordion from '@/components/ui/NavItemAccordion';
 import ProjectButton from '@/components/ui/ProjectButton';
 
-export default function Projects({projects, moreProjects=false}) {
+export default function Projects({projects = {}, moreProjects=false}) {
+	console.log(projects);
   return (
     <section className='bg-whisper rounded-5xl pb-6 pt-16 md:pt-[60px] text-blackRussian md:pb-12 lg:pt-36 lg:pb-9 lg:rounded-7xl'>
       <div className='container'>
@@ -23,11 +24,13 @@ export default function Projects({projects, moreProjects=false}) {
             <Title text="® /. 22" variant='black'></Title>
           </div>
 
-          {/* {projects.length > 0 && (
-					{projects.map((project, i) => (<></>	))}
-					)} */}
-          <ul className='pt-15 border-t border-black-russian md:pt-10 lg:grid grid-cols-2 gap-x-7 lg:pt-12'>
 
+          <ul className='pt-15 border-t border-black-russian md:pt-10 lg:grid grid-cols-2 gap-x-7 lg:pt-12'>
+          
+				{projects[0] && projects.map((project, i) => (
+					<li key={i}>{project.id} - {project.attributes.Title}</li>			 
+				))}
+					
             <ProjectItem name='Екатерининская улица Мурино' asp='aspect-[398/302]' aspTab='aspect-[805/483]' aspDesktop='aspect-[858/483]'>
               <Tag text1='3D анимация' text2='МОДЕЛИРОВАНИЕ' />
               <ProjectItemImage link='/image/content/murino-14.png' width='398' height='302' variant='imageBlock' />
@@ -58,6 +61,8 @@ export default function Projects({projects, moreProjects=false}) {
               <Tag text1='3D анимация' text2='' />
               <ProjectItemImage link='/image/content/meatbrothers.png' width='308' height='308' variant='centerImage' />
             </ProjectItem>
+
+
           </ul>
 
           {moreProjects&&(
