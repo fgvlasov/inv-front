@@ -4,10 +4,10 @@ import NavSubMenu from "./NavSubMenu";
 import { useState } from "react";
 
 export default function Nav({ menu }) {
+  const [menuOpened, setMenuOpened] = useState(false);
   if (!menu) {
     return <Loading />;
   }
-  const [menuOpened, setMenuOpened] = useState(false);
 
   return (
     <nav className="hidden lg:block lg:mr-auto text-inherit">

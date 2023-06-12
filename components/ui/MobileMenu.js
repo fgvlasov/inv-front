@@ -7,10 +7,10 @@ import Link from "next/link";
 import MobileSubMenu from "./MobileSubMenu";
 
 export default function MobileMenu({ menu, onClose }) {
+  const [menuOpened, setMenuOpened] = useState(false);
   if (!menu) {
     return <Loading />;
   }
-  const [menuOpened, setMenuOpened] = useState(false);
 
   return (
     <div
