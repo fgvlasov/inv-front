@@ -16,7 +16,7 @@ function Project({ project, categories }) {
   };
 
   return (
-    <Layout>
+    <Layout bg="white" headerBg="white" footerBg="black">
       <Seo seo={seo} />
       <h1>{project.attributes.Title}</h1>
       {project.attributes.Description && (

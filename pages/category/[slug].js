@@ -1,5 +1,5 @@
 import Seo from "@/components/seo";
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import Projects from "@/components/pages/index/Projects";
 
 import { fetchAPI } from "lib/api";
@@ -11,7 +11,7 @@ const Category = ({ category, categories }) => {
   };
 
   return (
-    <Layout>
+    <Layout bg="white" headerBg="white" footerBg="black">
       {/* <Seo seo={seo} /> */}
       <div className="uk-section">
         <div className="uk-container uk-container-large">
