@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import useTranslation from "next-translate/useTranslation";
 import IntroSlides from "@/components/ui/IntroSlides";
 import Socials from "@/components/ui/Socials";

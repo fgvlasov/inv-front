@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import { fetchAPI } from "lib/api";
 import ProjectsList from "@/components/Projects/ProjectsList";
 import TitleSection from "@/components/ui/TitleSection";

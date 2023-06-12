@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import { fetchAPI } from "lib/api";
-import Projects from "@/components/pages/index/Projects";
+//import Projects from "@/components/pages/index/Projects";
 import Blog from "@/components/pages/index/Blog";
 import IntroCost from "@/components/ui/IntroCost";
 import useTranslation from "next-translate/useTranslation";

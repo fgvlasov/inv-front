@@ -1,5 +1,5 @@
 import Seo from "@/components/seo";
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import Image from "next/image";
 import { fetchAPI } from "lib/api";
 import { getStrapiMedia } from "lib/media";
