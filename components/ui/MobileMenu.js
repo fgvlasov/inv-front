@@ -55,7 +55,7 @@ export default function MobileMenu({ menu, onClose }) {
             .filter((item) => !item.parent)
             .map((item) =>
               item.collapsed ? (
-                <>
+                <span key={item.id}>
                   <li className="flex justify-between items-center border-t border-eclipse border-opacity-20">
                     <Link
                       href={item.path}
@@ -88,9 +88,9 @@ export default function MobileMenu({ menu, onClose }) {
                   {menuOpened && (
                     <MobileSubMenu menu={menu} opened={menuOpened} />
                   )}
-                </>
+                </span>
               ) : (
-                <NavItem text={item.title} link={item.path} />
+                <NavItem key={item.id} text={item.title} link={item.path} />
               )
             )}
         </ul>

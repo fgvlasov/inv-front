@@ -1,5 +1,4 @@
 import Socials from "./Socials";
-import Logo from "./Logo";
 import Link from "next/link";
 import Loading from "./Loading";
 
