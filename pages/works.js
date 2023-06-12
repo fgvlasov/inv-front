@@ -30,7 +30,7 @@ export default function Works({ projects }) {
           </div>
         </div>
         {/* <ProjectWorks /> */}
-        <ProjectsList projects={projects} />
+        <ProjectsList projects={projects} moreProjects={false} />
         <div
           className="bg-black px-3.8 -mt-7 pt-10.5
           md:pt-18

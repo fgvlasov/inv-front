@@ -9,7 +9,7 @@ import { getStrapiMedia } from "lib/media";
 import ProjectsTitle from "./ProjectsTitle";
 import Marquee from "../ui/Marquee";
 
-export default function ProjectsList({ projects }) {
+export default function ProjectsList({ projects, moreProjects }) {
   //console.log(projects[0].attributes.tags.data[1]);
   if (!projects) {
     return <Loading />;
