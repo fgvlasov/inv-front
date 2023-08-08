@@ -12,7 +12,7 @@ export default function ServiceItem({
 }) {
   return (
     <div
-      className={`w-full h-[600px] mb-2.5 pt-9 px-9 rounded-5xl relative
+      className={`w-full h-[33vw] mb-2.5 pt-9 px-9 rounded-5xl relative
     md:mb-5
     lg:mb-0 lg:mr-7 lg:last-of-type:mr-0`}
     >
@@ -26,7 +26,7 @@ export default function ServiceItem({
         </p>
         {image && (
           <div
-            className="absolute top-0 bottom-0 left-0 right-0 
+            className="
       lg:max-w-full lg:min-w-fit"
           >
             <Image
