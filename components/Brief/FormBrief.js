@@ -33,15 +33,9 @@ export default function FormBrief({ visobjs, categories, service = "" }) {
         ProjectType: projectType?.attributes?.name,
       };
       await sendBrief(sendData);
-
-      const res = await fetch("/api/send", {
-        method: "POST",
-        body: JSON.stringify(sendData),
-      });
       openSuccessToast();
     } catch (error) {
       openErrorToast();
-      throw Error();
     } finally {
       setLoading(false);
     }

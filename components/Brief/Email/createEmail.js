@@ -1,6 +1,6 @@
 export const createEmail = (data) => {
   const emailData = JSON.parse(data);
-  Object.entries(emailData).map(([key, value]) => console.log(key, value));
+
   const email = `
   <body >
           ${Object.entries(emailData)

@@ -50,7 +50,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ locale, params }) {
-  console.log(params);
   const [categoriesRes, visobjRes] = await Promise.all([
     fetchAPI("/categories", {
       fields: ["name", "slug"],

@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
 import { ToastrContext } from "../Toastr/ToastrProvider";
 import sendEmail from "lib/email";
+import { sendCallOrder } from "lib/sendCallOrder";
 
 function FormInput({ type, id, placeholder, register, name, pattern }) {
   return (
@@ -40,16 +41,10 @@ export default function FormService() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      await sendEmail(data);
-      const res = await fetch("/api/send", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      await sendCallOrder({ ...data, Agreement: true });
       openSuccessToast();
-      // console.log("Email sent successfully!");
     } catch (error) {
       openErrorToast();
-      // console.error("Email sending error:", error);
     } finally {
       setLoading(false);
     }
@@ -81,13 +76,17 @@ export default function FormService() {
           />
           <FormInput
             type="tel"
-            id="phone"
+            id="Phone"
             placeholder="Телефон*"
-            name={"phone"}
+            name={"Phone"}
             pattern={{ required: "Phone is required" }}
             register={methods.register}
           />
-          <FormButton text="Отправить" loading={loading} />
+          <FormButton
+            text="Отправить"
+            loading={loading}
+            disabled={!methods.formState.isValid}
+          />
         </FormFieldset>
       </form>
     </FormProvider>

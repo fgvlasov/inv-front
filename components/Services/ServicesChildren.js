@@ -36,8 +36,6 @@ export default function ServicesChildren({ parent }) {
     return <Loading />;
   }
 
-  //console.log(data);
-
   return (
     <div className="container">
       {data[0] &&

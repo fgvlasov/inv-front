@@ -27,11 +27,10 @@ export default function Tag({ tag, projects, categories }) {
       title: tag.attributes.Name,
     },
   ];
-
   return (
     <>
       {/* <Seo seo={seo} /> */}
-      <TitleSection text={tag.attributes.Name} />
+      <TitleSection text={`# ${tag.attributes.Name}`} />
       <Line variantColor="grey" />
       <BreadCrumbs links={breadCrumbsItems} />
       <ProjectsListPortfolio

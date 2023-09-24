@@ -43,8 +43,9 @@ export default function ModalSelectForBrief({ options, name, id = "" }) {
   }, [isOpen]);
 
   useEffect(() => {
+    setValue(name, options[0].attributes.Title);
     setOption(options[0].attributes.Title);
-  }, [options]);
+  }, [options, name, setValue]);
 
   return (
     <div

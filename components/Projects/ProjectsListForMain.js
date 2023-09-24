@@ -13,7 +13,6 @@ export default function ProjectsListForMain({
   projects,
   moreProjects = false,
 }) {
-  // console.log(projects);
   // if (!projects) {
   //   return <Loading />;
   // }

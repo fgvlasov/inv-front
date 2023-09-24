@@ -6,6 +6,7 @@ import { VideoPlayer } from "../VideoPlayer";
 
 export const SwiperVideo = ({ videoSlides, poster }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  console.log(poster);
   return (
     <>
       <Swiper
@@ -18,7 +19,7 @@ export const SwiperVideo = ({ videoSlides, poster }) => {
       >
         {videoSlides.map((video, index) => (
           <SwiperSlide key={index}>
-            <VideoPlayer poster={poster} videofile={video} />
+            <VideoPlayer poster={poster?.data} videofile={video} />
           </SwiperSlide>
         ))}
       </Swiper>

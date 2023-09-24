@@ -24,7 +24,6 @@ export default function Service({ category, projects, services }) {
     shareImage: category.attributes.image,
   };
 
-  console.log(services);
   return (
     <>
       <Seo seo={seo} />

@@ -1,4 +1,8 @@
-export default function FormButton({ text, loading }) {
+export default function FormButton({
+  text,
+  loading = false,
+  disabled = false,
+}) {
   return (
     <div
       className="pt-7 md:flex items-center 
@@ -6,7 +10,7 @@ export default function FormButton({ text, loading }) {
     xl:p-0 xl:basis-1/3 shrink-0"
     >
       <button
-        disabled={loading}
+        disabled={loading || disabled}
         type="submit"
         className={`${
           loading ? "opacity-25" : ""

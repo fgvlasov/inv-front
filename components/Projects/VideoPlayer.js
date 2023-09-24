@@ -1,5 +1,6 @@
 import { getStrapiURL } from "lib/api";
 import { getStrapiMedia } from "lib/media";
+import { getURL } from "next/dist/shared/lib/utils";
 import React, { useRef, useState } from "react";
 
 export function getLink(media) {
@@ -30,7 +31,12 @@ export const VideoPlayer = ({ poster, videofile, small = false }) => {
       onClick={handlePlay}
       className="w-full h-full relative rounded-lr overflow-hidden"
     >
-      <video ref={videoRef} poster={getStrapiMedia(poster)} controls>
+      <video
+        ref={videoRef}
+        poster={getLink(poster)}
+        controls
+        className="w-full h-full"
+      >
         <source src={getLink(videofile)} type="video/mp4" />
         <p>
           Ваш браузер не поддерживает встроенные видео. Попробуйте скачать его

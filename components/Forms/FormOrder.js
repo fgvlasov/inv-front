@@ -44,15 +44,9 @@ export const FormOrder = ({ onSubmitForm }) => {
     setLoading(true);
     try {
       await sendEmail(data);
-      const res = await fetch("/api/send", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
       openSuccessToast();
-      // console.log("Email sent successfully!");
     } catch (error) {
       openErrorToast();
-      // console.error("Email sending error:", error);
     } finally {
       setLoading(false);
     }
@@ -79,16 +73,16 @@ export const FormOrder = ({ onSubmitForm }) => {
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <ModalFieldset width="w-full">
               <ModalLabel
-                htmlFor="name"
+                htmlFor="Name"
                 text="Имя"
                 align="text-left"
                 required={true}
               />
               <ModalInputForBrief
                 type="text"
-                id="name"
+                id="Name"
                 placeholder="Введите ваше имя"
-                name="name"
+                name="Name"
                 error={methods.formState.errors.name?.message}
                 pattern={{ required: "This field is required" }}
                 register={methods.register}
@@ -146,7 +140,7 @@ export const FormOrder = ({ onSubmitForm }) => {
               />
               <ModalSelectForBrief options={options} name={"Direction"} />
             </ModalFieldset>
-            <ModalApproveForm name={"approve"} fullWidth />
+            <ModalApproveForm name={"Agreement"} fullWidth />
             <ButtonSubmit fullWidth loading={loading} />
           </form>
         </FormProvider>

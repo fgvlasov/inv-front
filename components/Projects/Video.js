@@ -14,8 +14,6 @@ export function getStrapiMedia(media) {
 }
 
 export default function Video({ poster, videofile, small = false }) {
-  console.log(videofile);
-
   return (
     //<div className='bg-[url("../public/image/content/video.png")] bg-no-repeat bg-center bg-cover w-full min-h-[561px] relative mt-2.5 md:aspect-square'>
     <div className="w-full relative">

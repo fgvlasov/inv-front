@@ -26,7 +26,6 @@ const options = [
 ];
 
 export const FormOrderCall = ({ title, onClose }) => {
-  // const [checked, setChecked] = useState(true);
   const [loading, setLoading] = useState(false);
   const methods = useForm();
   const { setOpen, setSuccess, setMessage, Confirmation_Form_Phone } =
@@ -45,16 +44,10 @@ export const FormOrderCall = ({ title, onClose }) => {
     setLoading(true);
     try {
       await sendCallOrder(data);
-      const res = await fetch("/api/send", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
       onClose();
       openSuccessToast();
-      // console.log("Email sent successfully!");
     } catch (error) {
       openErrorToast();
-      // console.error("Email sending error:", error);
     } finally {
       setLoading(false);
     }
@@ -94,23 +87,23 @@ export const FormOrderCall = ({ title, onClose }) => {
 
             <ModalFieldset width="w-full">
               <ModalLabel
-                htmlFor="phone"
+                htmlFor="Phone"
                 text="Телефон"
                 align="text-left"
                 required={true}
               />
               <ModalInputForBrief
                 type="tel"
-                id="phone"
+                id="Phone"
                 placeholder="+7 (000) 000 00-00"
                 error={methods.formState.errors.phone?.message}
-                name={"phone"}
+                name={"Phone"}
                 pattern={{ required: "Phone is required" }}
                 register={methods.register}
               />
             </ModalFieldset>
 
-            <ModalApproveForm name={"approve"} fullWidth />
+            <ModalApproveForm name={"Agreement"} fullWidth />
             <ButtonSubmit
               disabled={!methods.formState.isValid}
               fullWidth
