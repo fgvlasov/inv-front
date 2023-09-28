@@ -5,6 +5,7 @@ import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
 import { ToastrProvider } from "@/components/Toastr/ToastrProvider";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -23,9 +24,19 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
 
       <GlobalContext.Provider value={global?.attributes}>
-        <ToastrProvider>
-          {getLayout(<Component {...pageProps} />)}
-        </ToastrProvider>
+        <GoogleReCaptchaProvider
+          reCaptchaKey="6Lfu8lwoAAAAACEvUdCp-s4FmzPGw6FW8CWVsovl"
+          scriptProps={{
+            async: false,
+            defer: false,
+            appendTo: "head",
+            nonce: undefined,
+          }}
+        >
+          <ToastrProvider>
+            {getLayout(<Component {...pageProps} />)}
+          </ToastrProvider>
+        </GoogleReCaptchaProvider>
       </GlobalContext.Provider>
     </>
   );
