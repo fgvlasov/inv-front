@@ -29,7 +29,7 @@ export default function Tag({ tag, projects, categories }) {
   ];
   return (
     <>
-      <Seo seo={seo} />
+      <Seo seo={seo}   />
       <TitleSection text={tag.attributes.Name}>
         <span
           className="text-4xl tracking-tight
