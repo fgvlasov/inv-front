@@ -5,7 +5,7 @@ var nodemailer = require("nodemailer");
 
 const user = "form@invert.studio";
 
-const pass = "PHag7RFNrMigF3QBvvyQ";
+const pass = "JTbtiF9g7pDimERwJdJP";
 
 export const transporter = nodemailer.createTransport({
   //service: "gmail",
