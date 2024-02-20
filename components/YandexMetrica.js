@@ -10,7 +10,7 @@ export const YandexMetrica = ({ children }) => {
     useEffect(() => {
         hit(window.location.pathname + window.location.search)
         Router.events.on('routeChangeComplete', (url) => hit(url))
-    }, [])
+    }, [hit])
     return (
         <>
             <YMInitializer
