@@ -9,7 +9,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <Script src="//cdn.callibri.ru/callibri.js" type="text/javascript" />
+          <Script src="//cdn.callibri.ru/callibri.js" type="text/javascript" strategy="beforeInteractive"/>
         </body>
       </Html>
     );
