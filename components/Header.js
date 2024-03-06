@@ -2,15 +2,13 @@ import Logo from "./ui/Logo";
 import Language from "./ui/Language";
 import Burger from "./ui/Burger";
 import MobileMenu from "./ui/MobileMenu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Nav from "./ui/Nav";
 import Order from "./ui/Order";
 import useTranslation from "next-translate/useTranslation";
-import { fetchAPI } from "lib/api";
 import Line from "./ui/Line";
 
-export default function Header({ variant, variantSvg }) {
-  const [menu, setMenu] = useState([]);
+export default function Header({ variant, variantSvg, menu, contactData }) {
   const i18n = useTranslation();
   const locale = i18n.lang;
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -31,16 +29,7 @@ export default function Header({ variant, variantSvg }) {
     setModalIsOpen(false);
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      const menuRes = await fetchAPI("/navigation/render/2", {
-        fields: ["title", "path"],
-        locale: locale,
-      });
-      setMenu(menuRes);
-    }
-    fetchData();
-  }, [locale]);
+
 
   const colorLine = variant === "black" ? "eclipse" : "grey";
   const headerClass =
@@ -73,6 +62,7 @@ export default function Header({ variant, variantSvg }) {
           modalIsOpen={modalIsOpen}
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModal}
+          data={contactData}
         />
       </div>
       <div className="container">

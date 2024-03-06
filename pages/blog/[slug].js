@@ -12,19 +12,16 @@ import ReactMarkdown from "react-markdown";
 import LoadFileBlock from "@/components/News/LoadFileBlock";
 import BlogsBlockList from "@/components/Blogs/BlogsBlockList";
 import Video from "@/components/Projects/Video";
-import Loading from "@/components/ui/Loading";
 
-export default function Blog({ blog, blogsOthers }) {
+export default function Blog({ blog, blogsOthers, data, menu, headerMenu }) {
   const { t } = useTranslation("common");
-  if (!blog) {
-    return <Loading />;
-  }
+
   const seo = {
     metaTitle: blog.attributes.Title,
     metaDescription: blog.attributes.Text,
     shareImage: blog.attributes.Image_preview,
   };
-  //console.log(blog);
+
   const breadCrumbsItems = [
     {
       title: t("All_news"),
@@ -36,17 +33,16 @@ export default function Blog({ blog, blogsOthers }) {
   ];
 
   return (
-    <>
+    <Layout bg="white" headerBg="white" footerBg="white" pillowColor="" data={data}
+      menu={menu}
+      header={headerMenu}
+      headerContact={data.attributes}>
       <Seo seo={seo} />
       <TitleSection text={blog.attributes.Title} />
       <Line variantColor="grey" />
       <BreadCrumbs links={breadCrumbsItems} />
       <IntroNews blog={blog} />
       {blog.attributes.Text && (
-        // <div
-        //   className="container pt-12 !max-w-screen-lg"
-        //   dangerouslySetInnerHTML={{ __html: blog.attributes.Text }}
-        // />
         <ReactMarkdown className=" container pt-12 !max-w-screen-lg markDown opacityMarkdown">
           {blog.attributes.Text}
         </ReactMarkdown>
@@ -94,15 +90,16 @@ export default function Blog({ blog, blogsOthers }) {
         titleOthers={true}
       />
       <Line variantColor="grey" />
-    </>
+    </Layout>
   );
 }
 
 export async function getStaticPaths() {
-  const blogsRes = await fetchAPI("/blogs", { fields: ["slug"],      
-  	pagination: {
-    	pageSize: 100,
-  		},
+  const blogsRes = await fetchAPI("/blogs", {
+    fields: ["slug"],
+    pagination: {
+      pageSize: 100,
+    },
   },
   );
 
@@ -119,27 +116,46 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const [matchingBlogs, blogsOthersRes] = await Promise.all([
-    fetchAPI("/blogs", {
-      filters: { slug: params.slug },
-      locale: locale,
-      publicationState: "live",
-      populate: "*",
-    }),
-    fetchAPI("/blogs", {
-      fields: ["Title", "slug", "Preview"],
-      populate: ["tag", "Image_preview"],
-      pagination: {
-        start: 0,
-        limit: 3,
-      },
-      publicationState: "live",
-      locale: locale,
-    }),
-  ]);
+  const [headerRes,
+    contactRes,
+    menuRes, matchingBlogs, blogsOthersRes] = await Promise.all([
+      fetchAPI("/navigation/render/2", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/contact", {
+        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+        locale: locale,
+        populate: "ContactSocials",
+      }),
+      fetchAPI("/navigation/render/3", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/blogs", {
+        filters: { slug: params.slug },
+        locale: locale,
+        publicationState: "live",
+        populate: "*",
+      }),
+      fetchAPI("/blogs", {
+        fields: ["Title", "slug", "Preview"],
+        populate: ["tag", "Image_preview"],
+        pagination: {
+          start: 0,
+          limit: 3,
+        },
+        publicationState: "live",
+        locale: locale,
+      }),
+    ]);
   const blog = matchingBlogs.data.length > 0 ? matchingBlogs.data[0] : null;
+
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       blog,
       blogsOthers: blogsOthersRes.data,
     },
@@ -147,10 +163,3 @@ export async function getStaticProps({ params, locale }) {
   };
 }
 
-Blog.getLayout = function getLayout(page) {
-  return (
-    <Layout bg="white" headerBg="white" footerBg="white" pillowColor="">
-      {page}
-    </Layout>
-  );
-};

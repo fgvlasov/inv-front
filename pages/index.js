@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "@/components/layout";
 import { fetchAPI } from "lib/api";
 import ServicesAbout from "@/components/Services/ServicesAbout";
@@ -8,20 +7,25 @@ import Line from "@/components/ui/Line";
 import Wrapper from "@/components/ui/Wrapper";
 import ProjectsListForMain from "@/components/Projects/ProjectsListForMain";
 import Seo from "@/components/seo";
-import useTranslation from 'next-translate/useTranslation';
 
-const Home = ({ projects, services, servicesAbout, about, blogs, global }) => {
-  const i18n = useTranslation();
-  const locale = i18n.lang;
+const Home = ({ projects, services, servicesAbout, about, blogs, global, data, menu, headerMenu }) => {
   const seo = {
     metaTitle: global.attributes.defaultSeo.metaTitle,
     metaDescription: global.attributes.defaultSeo.metaDescription,
     //shareImage: global.Logo,
   };
-  
 
   return (
-    <>
+    <Layout
+      headerContact={data.attributes}
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      bg="black"
+      headerBg="black"
+      footerBg="black"
+      pillowColor="dark"
+      variantSvg="darkSvg">
       <Seo seo={seo} />
       <ServicesAbout about={about} servicesAbout={servicesAbout} />
       <ServicesListHome services={services} />
@@ -37,12 +41,15 @@ const Home = ({ projects, services, servicesAbout, about, blogs, global }) => {
       <div className="container">
         <Line variantColor="eclipse" />
       </div>
-    </>
+    </Layout>
   );
 };
 
 export async function getStaticProps({ locale }) {
   const [
+    headerRes,
+    contactRes,
+    menuRes,
     projectsRes,
     servicesRes,
     servicesAboutRes,
@@ -50,6 +57,19 @@ export async function getStaticProps({ locale }) {
     blogRes,
     globalRes,
   ] = await Promise.all([
+    fetchAPI("/navigation/render/2", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/contact", {
+      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      locale: locale,
+      populate: "ContactSocials",
+    }),
+    fetchAPI("/navigation/render/3", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
     fetchAPI("/projects", {
       sort: ["ListPosition:asc"],
       populate: {
@@ -123,23 +143,12 @@ export async function getStaticProps({ locale }) {
       about: aboutRes.data,
       blogs: blogRes.data,
       global: globalRes.data,
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
     },
-    revalidate: 3600,
+    // revalidate: 3600,
   };
 }
-
-Home.getLayout = function getLayout(page) {
-  return (
-    <Layout
-      bg="black"
-      headerBg="black"
-      footerBg="black"
-      pillowColor="dark"
-      variantSvg="darkSvg"
-    >
-      {page}
-    </Layout>
-  );
-};
 
 export default Home;

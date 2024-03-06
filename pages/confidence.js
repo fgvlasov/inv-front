@@ -6,9 +6,7 @@ import BreadCrumbs from "@/components/ui/Breadcrumbs";
 import { fetchAPI } from "lib/api";
 import Seo from "@/components/seo";
 
-export default function Confidence({ agreement, text }) {
-  const i18n = useTranslation();
-  const locale = i18n.lang;
+export default function Confidence({ agreement, text, data, menu, headerMenu }) {
   const seo = {
     metaTitle: agreement.attributes.Seo.metaTitle,
     metaDescription: agreement.attributes.Seo.metaDescription,
@@ -17,6 +15,10 @@ export default function Confidence({ agreement, text }) {
 
   return (
     <Layout
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      headerContact={data.attributes}
       bg="white"
       headerBg="white"
       footerBg="white"
@@ -43,16 +45,36 @@ export default function Confidence({ agreement, text }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const [agreementRes] = await Promise.all([
-    fetchAPI("/agreement", {
-      fields: ["Title", "TextEditor"],
-      locale: locale,
-      populate: "*",
-    }),
-  ]);
+  const [
+    headerRes,
+    contactRes,
+    menuRes,
+    agreementRes] = await Promise.all([
+      fetchAPI("/navigation/render/2", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/contact", {
+        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+        locale: locale,
+        populate: "ContactSocials",
+      }),
+      fetchAPI("/navigation/render/3", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/agreement", {
+        fields: ["Title", "TextEditor"],
+        locale: locale,
+        populate: "*",
+      }),
+    ]);
 
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       agreement: agreementRes.data,
     },
     revalidate: 3600,

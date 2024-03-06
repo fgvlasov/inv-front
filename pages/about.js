@@ -12,7 +12,7 @@ import AboutIntro from "@/components/About/AboutIntro";
 import Seo from "@/components/seo";
 import ProjectsTitle from "@/components/Projects/ProjectsTitle";
 
-export default function About({ about, projects, blogs }) {
+export default function About({ about, projects, blogs, data, menu, headerMenu }) {
   const { t } = useTranslation("common");
   const seo = {
     metaTitle: about.attributes.Seo.metaTitle,
@@ -21,7 +21,17 @@ export default function About({ about, projects, blogs }) {
   };
 
   return (
-    <>
+    <Layout
+      headerContact={data.attributes}
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      bg="black"
+      headerBg="white"
+      footerBg="black"
+      pillowColor="dark"
+      variantSvg="darkSvg"
+    >
       <Seo seo={seo} />
       <Wrapper color="grey">
         <TitleSection text={about.attributes.Title} />
@@ -57,38 +67,62 @@ export default function About({ about, projects, blogs }) {
         buttonColor="white"
         blogRes={blogs}
       />
-    </>
+    </Layout>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  const [aboutRes, projectsRes, blogRes] = await Promise.all([
-    fetchAPI("/about", {
-      populate: "*",
-      locale: locale,
-    }),
-    fetchAPI("/projects", {
-      sort: ["ListPosition:asc"],
-      populate: {
-        Poster: "*",
-        tags: "*",
-      },
-	  locale: locale,
-      fields: ["title", "slug"],
-      pagination: {
-        start: 0,
-        limit: 6,
-      },
-    }),
-    fetchAPI("/blogs", {
-      fields: ["Title", "slug", "Preview"],
-      populate: ["tag", "Image_preview"],
-      locale: locale,
-    }),
-  ]);
+  const [
+    headerRes,
+    contactRes,
+    menuRes,
+    aboutRes,
+    projectsRes,
+    blogRes] = await Promise.all([
+      fetchAPI("/navigation/render/2", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/contact", {
+        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+        locale: locale,
+        populate: "ContactSocials",
+      }),
+      fetchAPI("/navigation/render/3", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/about", {
+        populate: "*",
+        locale: locale,
+      }),
+      fetchAPI("/projects", {
+        sort: ["ListPosition:asc"],
+        populate: {
+          Poster: "*",
+          tags: "*",
+        },
+        locale: locale,
+        fields: ["title", "slug"],
+        pagination: {
+          start: 0,
+          limit: 6,
+        },
+      }),
+      fetchAPI("/blogs", {
+        fields: ["Title", "slug", "Preview"],
+        populate: ["tag", "Image_preview"],
+        locale: locale,
+      }),
+    ]);
+
+
 
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       about: aboutRes.data,
       projects: projectsRes.data,
       blogs: blogRes.data,
@@ -97,16 +131,3 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-About.getLayout = function getLayout(page) {
-  return (
-    <Layout
-      bg="black"
-      headerBg="white"
-      footerBg="black"
-      pillowColor="dark"
-      variantSvg="darkSvg"
-    >
-      {page}
-    </Layout>
-  );
-};

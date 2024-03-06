@@ -1,5 +1,4 @@
 import Layout from "@/components/layout";
-import useTranslation from "next-translate/useTranslation";
 import TitleSection from "@/components/ui/TitleSection";
 import BreadCrumbs from "@/components/ui/Breadcrumbs";
 import { fetchAPI } from "lib/api";
@@ -11,9 +10,7 @@ import Address from "@/components/ui/Address";
 import Line from "@/components/ui/Line";
 import Seo from "@/components/seo";
 
-function Contacts({ contact, blogs }) {
-  const i18n = useTranslation();
-  const locale = i18n.lang;
+function Contacts({ contact, blogs, data, menu, headerMenu }) {
   const seo = {
     metaTitle: contact.attributes.Seo.metaTitle,
     metaDescription: contact.attributes.Seo.metaDescription,
@@ -21,7 +18,16 @@ function Contacts({ contact, blogs }) {
   };
 
   return (
-    <>
+    <Layout
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      headerContact={data.attributes}
+      bg="white"
+      headerBg="white"
+      footerBg="white"
+      pillowColor="white"
+      variantSvg="darkSvg"   >
       <Seo seo={seo} />
       <TitleSection text={contact.attributes.Title} />
       <div className="container">
@@ -57,16 +63,24 @@ function Contacts({ contact, blogs }) {
       <div className="container">
         <Line variantColor="grey" />
       </div>
-    </>
+    </Layout>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  const [contactRes, blogsRes] = await Promise.all([
-    fetchAPI("/contact", {
-      fields: ["Title", "Address", "Phone", "Email"],
+  const [headerRes, menuRes, contactRes, blogsRes] = await Promise.all([
+    fetchAPI("/navigation/render/2", {
+      fields: ["title", "path"],
       locale: locale,
-      populate: "*",
+    }),
+    fetchAPI("/navigation/render/3", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/contact", {
+      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      locale: locale,
+      populate: ["ContactSocials", "Seo"],
     }),
     fetchAPI("/blogs", {
       fields: ["Title", "slug", "Preview"],
@@ -77,6 +91,9 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       contact: contactRes.data,
       blogs: blogsRes.data,
     },
@@ -84,18 +101,5 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-Contacts.getLayout = function getLayout(page) {
-  return (
-    <Layout
-      bg="white"
-      headerBg="white"
-      footerBg="white"
-      pillowColor="white"
-      variantSvg="darkSvg"
-    >
-      {page}
-    </Layout>
-  );
-};
 
 export default Contacts;

@@ -10,10 +10,9 @@ import ServicesSlides from "@/components/Services/ServicesSlides";
 import PortfolioCarousel from "@/components/Portfolio/PortfolioCarousel";
 import Seo from "@/components/seo";
 
-export default function Services({ services, projects }) {
+export default function Services({ services, projects, data, menu, headerMenu }) {
+
   const { t } = useTranslation("common");
-  const i18n = useTranslation();
-  const locale = i18n.lang;
 
   const seo = {
     metaTitle: t("services_seo.meta_title"),
@@ -22,7 +21,17 @@ export default function Services({ services, projects }) {
   };
 
   return (
-    <>
+    <Layout
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      headerContact={data.attributes}
+      bg="white"
+      headerBg="black"
+      footerBg="white"
+      pillowColor="white"
+      variantSvg="darkSvg"
+    >
       <Seo seo={seo} />
       <Wrapper>
         <TitleSection text={t`services.title`} variantColor="white" />
@@ -50,13 +59,26 @@ export default function Services({ services, projects }) {
       <div className="container">
         <Line variantColor="grey" />
       </div>
-    </>
+    </Layout>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  // Run API calls in parallel
-  const [servicesRes, projectsRes] = await Promise.all([
+
+  const [headerRes, contactRes, menuRes, servicesRes, projectsRes] = await Promise.all([
+    fetchAPI("/navigation/render/2", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/contact", {
+      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      locale: locale,
+      populate: "ContactSocials",
+    }),
+    fetchAPI("/navigation/render/3", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
     fetchAPI("/categories", {
       populate: "*",
       fields: [
@@ -93,23 +115,12 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       services: servicesRes.data,
       projects: projectsRes.data,
     },
     revalidate: 3600,
   };
 }
-
-Services.getLayout = function getLayout(page) {
-  return (
-    <Layout
-      bg="white"
-      headerBg="black"
-      footerBg="white"
-      pillowColor="white"
-      variantSvg="darkSvg"
-    >
-      {page}
-    </Layout>
-  );
-};

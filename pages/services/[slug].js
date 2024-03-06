@@ -13,7 +13,7 @@ import Wrapper from "@/components/ui/Wrapper";
 import ServicesForCategory from "@/components/Services/ServicesForCategory";
 import Line from "@/components/ui/Line";
 
-export default function Service({ category, projects }) {
+export default function Service({ category, projects, data, menu, headerMenu }) {
   const i18n = useTranslation();
   const { t } = useTranslation("common");
   const locale = i18n.lang;
@@ -25,7 +25,17 @@ export default function Service({ category, projects }) {
   };
 
   return (
-    <>
+    <Layout
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      headerContact={data.attributes}
+      bg="black"
+      headerBg="white"
+      footerBg="black"
+      pillowColor="dark"
+      variantSvg="darkSvg"
+    >
       <Seo seo={seo} />
       <Wrapper color="grey" position="bottom">
         <TitleSection text={category.attributes.name} />
@@ -64,7 +74,7 @@ export default function Service({ category, projects }) {
           focusService={category.id}
         />
       </Wrapper>
-    </>
+    </Layout>
   );
 }
 
@@ -87,28 +97,69 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const matchingCategories = await fetchAPI("/categories", {
-    //fields: ["name", "text", "Description"],
-    locale: locale,
-    populate: "*",
-    filters: {
-      slug: params.slug,
-    },
-  });
+  const [headerRes, contactRes, menuRes, matchingCategories, projectsRes] = await Promise.all([
+    fetchAPI("/navigation/render/2", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/contact", {
+      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      locale: locale,
+      populate: "ContactSocials",
+    }),
+    fetchAPI("/navigation/render/3", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
 
-  const projectsRes = await fetchAPI("/projects", {
-    //fields: ["name", "text", "Description"],
-    locale: locale,
-    populate: "*",
-    filters: {
-      categories: {
-        slug: { $eq: params.slug },
+    fetchAPI("/categories", {
+      //fields: ["name", "text", "Description"],
+      locale: locale,
+      populate: "*",
+      filters: {
+        slug: params.slug,
       },
-    },
-  });
+    }),
+    fetchAPI("/projects", {
+      //fields: ["name", "text", "Description"],
+      locale: locale,
+      populate: "*",
+      filters: {
+        categories: {
+          slug: { $eq: params.slug },
+        },
+      },
+    })
+
+  ])
+
+
+
+  // const matchingCategories = await fetchAPI("/categories", {
+  //   //fields: ["name", "text", "Description"],
+  //   locale: locale,
+  //   populate: "*",
+  //   filters: {
+  //     slug: params.slug,
+  //   },
+  // });
+
+  // const projectsRes = await fetchAPI("/projects", {
+  //   //fields: ["name", "text", "Description"],
+  //   locale: locale,
+  //   populate: "*",
+  //   filters: {
+  //     categories: {
+  //       slug: { $eq: params.slug },
+  //     },
+  //   },
+  // });
 
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       category: matchingCategories.data[0],
       projects: projectsRes.data,
     },
@@ -116,16 +167,3 @@ export async function getStaticProps({ params, locale }) {
   };
 }
 
-Service.getLayout = function getLayout(page) {
-  return (
-    <Layout
-      bg="black"
-      headerBg="white"
-      footerBg="black"
-      pillowColor="dark"
-      variantSvg="darkSvg"
-    >
-      {page}
-    </Layout>
-  );
-};

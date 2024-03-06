@@ -7,10 +7,8 @@ import Line from "@/components/ui/Line";
 import FormBrief from "@/components/Brief/FormBrief";
 import Seo from "@/components/seo";
 
-export default function Brief({ categories, visobjs, seoBrief }) {
+export default function Brief({ categories, visobjs, seoBrief, data, menu, headerMenu }) {
   const { t } = useTranslation("common");
-  const i18n = useTranslation();
-  const locale = i18n.lang;
 
   const seo = {
     metaTitle: seoBrief.attributes.SeoBrief.metaTitle,
@@ -19,7 +17,9 @@ export default function Brief({ categories, visobjs, seoBrief }) {
   };
 
   return (
-    <>
+    <Layout bg="white" headerBg="white" footerBg="white" pillowColor={"grey"} data={data} headerContact={data.attributes}
+      menu={menu}
+      header={headerMenu}>
       <Seo seo={seo} />
       <TitleSection text={t("brief.title_fill")} />
       <div className="container">
@@ -38,30 +38,49 @@ export default function Brief({ categories, visobjs, seoBrief }) {
       <div className="container">
         <Line variantColor="grey" />
       </div>
-    </>
+    </Layout>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  const [categoriesRes, visobjRes, seoBriefRes] = await Promise.all([
-    fetchAPI("/categories", {
-      fields: ["name", "slug"],
-      locale: locale,
-    }),
-    fetchAPI("/visualization-objects", {
-      populate: "*",
-      locale: locale,
-    }),
-    fetchAPI("/about", {
-      fields: ["Title"],
-      populate: ["SeoBrief"],
+  const [headerRes,
+    contactRes,
+    menuRes,
+    categoriesRes, visobjRes, seoBriefRes] = await Promise.all([
+      fetchAPI("/navigation/render/2", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/contact", {
+        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+        locale: locale,
+        populate: "ContactSocials",
+      }),
+      fetchAPI("/navigation/render/3", {
+        fields: ["title", "path"],
+        locale: locale,
+      }),
+      fetchAPI("/categories", {
+        fields: ["name", "slug"],
+        locale: locale,
+      }),
+      fetchAPI("/visualization-objects", {
+        populate: "*",
+        locale: locale,
+      }),
+      fetchAPI("/about", {
+        fields: ["Title"],
+        populate: ["SeoBrief"],
 
-      locale: locale,
-    }),
-  ]);
+        locale: locale,
+      }),
+    ]);
 
   return {
     props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
       categories: categoriesRes.data,
       visobjs: visobjRes.data,
       seoBrief: seoBriefRes.data,
@@ -70,10 +89,3 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-Brief.getLayout = function getLayout(page) {
-  return (
-    <Layout bg="white" headerBg="white" footerBg="white" pillowColor={"grey"}>
-      {page}
-    </Layout>
-  );
-};

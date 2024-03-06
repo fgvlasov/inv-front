@@ -1,15 +1,25 @@
 import Layout from "@/components/layout";
-import useTranslation from "next-translate/useTranslation";
 import Wrapper from "@/components/ui/Wrapper";
 import Line from "@/components/ui/Line";
 import IntroError from "@/components/ui/IntroError";
 import ServicesSlides from "@/components/Services/ServicesSlides";
+import { fetchAPI } from "lib/api";
 
-export default function ErrorPage({}) {
-  const { t } = useTranslation("common");
+export default function ErrorPage({ data, menu, headerMenu }) {
 
   return (
-    <>
+    <Layout
+      headerContact={data.attributes}
+      data={data}
+      menu={menu}
+      header={headerMenu}
+      bg="grey"
+      headerBg="black"
+      footerBg="white"
+      pillowColor={"grey"}
+      variantSvg="darkSvg"
+    >
+
       <Wrapper color="black" position="bottom">
         <IntroError />
       </Wrapper>
@@ -19,20 +29,38 @@ export default function ErrorPage({}) {
       <div className="container">
         <Line variantColor="grey" />
       </div>
-    </>
+    </Layout>
   );
 }
 
-ErrorPage.getLayout = function getLayout(page) {
-  return (
-    <Layout
-      bg="grey"
-      headerBg="black"
-      footerBg="white"
-      pillowColor={"grey"}
-      variantSvg="darkSvg"
-    >
-      {page}
-    </Layout>
-  );
-};
+export async function getStaticProps({ locale }) {
+  const [
+    headerRes,
+    contactRes,
+    menuRes,
+
+  ] = await Promise.all([
+    fetchAPI("/navigation/render/2", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/contact", {
+      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      locale: locale,
+      populate: "ContactSocials",
+    }),
+    fetchAPI("/navigation/render/3", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+  ]);
+
+  return {
+    props: {
+      data: contactRes.data,
+      menu: menuRes,
+      headerMenu: headerRes,
+    },
+    revalidate: 3600,
+  };
+}
