@@ -1,9 +1,9 @@
-import Tag from "@/components/ui/Tag";
-import { getStrapiMedia } from "lib/media";
-import Image from "next/image";
-import Link from "next/link";
-import Line from "@/components/ui/Line";
-import ServicesDoc from "@/components/ui/ServicesDoc";
+import Tag from '@/components/ui/Tag';
+import { getStrapiMedia } from 'lib/media';
+import Image from 'next/image';
+import Link from 'next/link';
+import Line from '@/components/ui/Line';
+import ServicesDoc from '@/components/ui/ServicesDoc';
 
 export default function ServicesAbout({ about, servicesAbout }) {
   return (
@@ -29,7 +29,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
               {about.attributes.SloganPart1}
             </span>
             <span className="flex items-center flex-wrap lg:pt-3.8">
-              {" "}
+              {' '}
               <svg
                 className="text-royal-blue shrink-0 w-[43px] h-[33px]
                 md:w-auto md:h-auto md:mr-2.5
@@ -44,7 +44,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                   d="M34.2 9 51 26 34.2 43l-3.54-3.46 10.96-11.08H1v-4.92h40.62L30.66 12.46 34.2 9Z"
                   fill="#4574EF"
                 />
-              </svg>{" "}
+              </svg>{' '}
               {about.attributes.SloganPart2}
             </span>
           </h2>
@@ -61,7 +61,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                 <Link
                   href={getStrapiMedia(item.attributes.Slides.Document)}
                   key={item.id}
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   target="_blank"
                   className="bg-blackRussian relative flex flex-col rounded-4xl p-[25px] w-[72%] aspect-square"
                 >

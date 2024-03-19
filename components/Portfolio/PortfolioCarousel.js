@@ -1,23 +1,23 @@
-import PillowLink from "../ui/PillowLink";
-import ProjectItemImage from "../ui/ProjectItemImage";
-import Title from "../ui/Title";
-import { Virtual, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import ProjectItemCarousel from "./ProjectItemCarousel";
+import PillowLink from '../ui/PillowLink';
+import ProjectItemImage from '../ui/ProjectItemImage';
+import Title from '../ui/Title';
+import { Virtual, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import ProjectItemCarousel from './ProjectItemCarousel';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { getStrapiMedia } from "lib/media";
-import useTranslation from "next-translate/useTranslation";
-import Tag from "../ui/Tag";
-import Loading from "../ui/Loading";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { getStrapiMedia } from 'lib/media';
+import useTranslation from 'next-translate/useTranslation';
+import Tag from '../ui/Tag';
+import Loading from '../ui/Loading';
 
 export default function PortfolioCarousel({
-  title = "Смотреть портфолио",
+  title = 'Смотреть портфолио',
   projects,
 }) {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
   //console.log(projects);
   if (!projects) {
     return <Loading />;
@@ -31,7 +31,7 @@ export default function PortfolioCarousel({
       <PillowLink
         variant="white"
         heightFit={true}
-        text={t("All_projects")}
+        text={t('All_projects')}
         variantSvg="blueSvg"
         link="/portfolio"
       />

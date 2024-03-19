@@ -1,17 +1,17 @@
-import FormFieldset from "./FormFieldset";
-import TitleH3 from "./TitleH3";
-import FormButton from "./FormButton";
-import { FormProvider, useForm } from "react-hook-form";
-import { useContext, useEffect, useState } from "react";
-import { ToastrContext } from "../Toastr/ToastrProvider";
-import { sendCallOrder } from "lib/sendCallOrder";
-import { useEnquiryForm } from "lib/useEnquiryForm";
-import InputMask from "react-input-mask";
-import { GlobalContext } from "pages/_app";
+import FormFieldset from './FormFieldset';
+import TitleH3 from './TitleH3';
+import FormButton from './FormButton';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useContext, useEffect, useState } from 'react';
+import { ToastrContext } from '../Toastr/ToastrProvider';
+import { sendCallOrder } from 'lib/sendCallOrder';
+import { useEnquiryForm } from 'lib/useEnquiryForm';
+import InputMask from 'react-input-mask';
+import { GlobalContext } from 'pages/_app';
 
 function FormInput({ type, id, placeholder, name, pattern, register }) {
   const { mask } = useContext(GlobalContext);
-  if (name === "Phone") {
+  if (name === 'Phone') {
     return (
       <InputMask
         {...register(name, {
@@ -67,7 +67,7 @@ export default function FormService({ onSubmitForm }) {
     setLoading(true);
     try {
       const isUser = await checkUser();
-      console.log(isUser);
+      //console.log(isUser);
       if (isUser) {
         await sendCallOrder({ ...data, Agreement: true });
         openSuccessToast();
@@ -99,9 +99,9 @@ export default function FormService({ onSubmitForm }) {
         />
         <FormFieldset>
           <FormInput
-            id={"name"}
-            name={"Name"}
-            pattern={{ required: "Name is required" }}
+            id={'name'}
+            name={'Name'}
+            pattern={{ required: 'Name is required' }}
             register={methods.register}
             type="text"
             placeholder="Имя"
@@ -110,8 +110,8 @@ export default function FormService({ onSubmitForm }) {
             type="tel"
             id="Phone"
             placeholder="Телефон*"
-            name={"Phone"}
-            pattern={{ required: "Phone is required" }}
+            name={'Phone'}
+            pattern={{ required: 'Phone is required' }}
             register={methods.register}
           />
           <FormButton
