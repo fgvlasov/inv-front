@@ -6,6 +6,8 @@ Disallow: /nubex.webm
 Disallow: /userfiles/
 Disallow: /VR/
 Disallow: /templates/
+Disallow: /*?block
+Disallow: /*?action
 
 Host: https://invert.studio
 Sitemap: https://invert.studio/sitemap_invert.xml
