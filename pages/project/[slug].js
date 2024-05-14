@@ -1,21 +1,21 @@
-import Seo from "@/components/seo";
-import Layout from "@/components/layout";
-import { fetchAPI } from "lib/api";
-import TitleSection from "@/components/ui/TitleSection";
-import BreadCrumbs from "@/components/ui/Breadcrumbs";
-import useTranslation from "next-translate/useTranslation";
-import TagBlock from "@/components/Projects/TagBlock";
-import Line from "@/components/ui/Line";
-import ProjectCarousel from "@/components/Projects/ProjectCarousel";
-import ProjectAbout from "@/components/Projects/ProjectAbout";
-import IntroCost from "@/components/ui/IntroCost";
-import PortfolioCarousel from "@/components/Portfolio/PortfolioCarousel";
+import Seo from '@/components/seo';
+import Layout from '@/components/layout';
+import { fetchAPI } from 'lib/api';
+import TitleSection from '@/components/ui/TitleSection';
+import BreadCrumbs from '@/components/ui/Breadcrumbs';
+import useTranslation from 'next-translate/useTranslation';
+import TagBlock from '@/components/Projects/TagBlock';
+import Line from '@/components/ui/Line';
+import ProjectCarousel from '@/components/Projects/ProjectCarousel';
+import ProjectAbout from '@/components/Projects/ProjectAbout';
+import IntroCost from '@/components/ui/IntroCost';
+import PortfolioCarousel from '@/components/Portfolio/PortfolioCarousel';
 
 function Project({ project, projectsOther, data, menu, headerMenu }) {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
 
   const seo = {
-    metaTitle: t("seo.project") + project.attributes.Seo.metaTitle,
+    metaTitle: t('seo.project') + project.attributes.Seo.metaTitle,
     metaDescription: project.attributes.Seo.metaDescription,
     shareImage: project.attributes.Poster,
     project: true,
@@ -23,8 +23,8 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
 
   const breadCrumbsItems = [
     {
-      title: t("works.title"),
-      path: "/portfolio",
+      title: t('works.title'),
+      path: '/portfolio',
     },
     {
       title: project.attributes.Title,
@@ -87,8 +87,8 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
 }
 
 export async function getStaticPaths() {
-  const projectsSlug = await fetchAPI("/projects", {
-    fields: ["slug"],
+  const projectsSlug = await fetchAPI('/projects', {
+    fields: ['slug'],
     pagination: {
       pageSize: 100,
     },
@@ -96,7 +96,10 @@ export async function getStaticPaths() {
 
   const projectsSlugPath = projectsSlug.data.map((project) => ({
     params: {
-      slug: project.attributes.slug,
+      slug:
+        project.attributes.slug !== null
+          ? project.attributes.slug.toString()
+          : '',
     },
   }));
   return {
@@ -108,45 +111,42 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, locale }) {
   // const categoriesRes = await fetchAPI("/categories");
 
-  const [headerRes,
-    contactRes,
-    menuRes,
-    projectsOtherRes,
-    projectsRes] = await Promise.all([
-      fetchAPI("/navigation/render/2", {
-        fields: ["title", "path"],
+  const [headerRes, contactRes, menuRes, projectsOtherRes, projectsRes] =
+    await Promise.all([
+      fetchAPI('/navigation/render/2', {
+        fields: ['title', 'path'],
         locale: locale,
       }),
-      fetchAPI("/contact", {
-        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      fetchAPI('/contact', {
+        fields: ['Title', 'Address', 'Phone', 'Email', 'PhoneLink'],
         locale: locale,
-        populate: "ContactSocials",
+        populate: 'ContactSocials',
       }),
-      fetchAPI("/navigation/render/3", {
-        fields: ["title", "path"],
+      fetchAPI('/navigation/render/3', {
+        fields: ['title', 'path'],
         locale: locale,
       }),
-      fetchAPI("/projects", {
-        fields: ["Title", "slug"],
+      fetchAPI('/projects', {
+        fields: ['Title', 'slug'],
         locale: locale,
-        populate: ["Poster", "tags"],
+        populate: ['Poster', 'tags'],
         pagination: {
           start: 0,
           limit: 6,
         },
       }),
-      fetchAPI("/projects", {
+      fetchAPI('/projects', {
         locale: locale,
-        populate: "*",
-        fields: "*",
+        populate: '*',
+        fields: '*',
         pagination: {
           pageSize: 100,
         },
         filters: {
           slug: params.slug,
         },
-      })
-    ])
+      }),
+    ]);
 
   return {
     props: {
