@@ -1,12 +1,12 @@
-import Title from "@/components/ui/Title";
-import ServiceItem from "@/components/ui/ServiceItem";
-import PillowLink from "@/components/ui/PillowLink";
-import FormService from "@/components/ui/FormService";
-import useTranslation from "next-translate/useTranslation";
-import Loading from "../ui/Loading";
+import Title from '@/components/ui/Title';
+import ServiceItem from '@/components/ui/ServiceItem';
+import PillowLink from '@/components/ui/PillowLink';
+import FormService from '@/components/ui/FormService';
+import useTranslation from 'next-translate/useTranslation';
+import Loading from '../ui/Loading';
 
 export default function ServicesListHome({ services }) {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
   const i18n = useTranslation();
   const locale = i18n.lang;
   if (!services) {
@@ -44,11 +44,11 @@ export default function ServicesListHome({ services }) {
             fill="#4574EF"
           />
         </svg>
-        <Title text={t("services.mainServices")} />
+        <Title text={t('services.mainServices')} />
         <div className="hidden lg:block ml-auto">
           <PillowLink
-            text={t("services.allServices")}
-            link={"/services"}
+            text={t('services.allServices')}
+            link={'/services'}
             variant="dark"
             variantSvg="whiteSvg"
           />
@@ -63,7 +63,10 @@ export default function ServicesListHome({ services }) {
             textPart1={service.attributes.textPart1}
             textPart2={service.attributes.textPart2}
             subtitle=""
-            link={`${i18n.lang}/services/${service.attributes.slug}`}
+            link={
+              //`${i18n.lang}/services/${service.attributes.slug}`
+              `/services/${service.attributes.slug}`
+            }
             descriptionItem1={service.attributes.text}
             image={service.attributes.image}
             centered={false}

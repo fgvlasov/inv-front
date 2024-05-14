@@ -1,20 +1,20 @@
-import Layout from "@/components/layout";
-import TitleSection from "@/components/ui/TitleSection";
-import BreadCrumbs from "@/components/ui/Breadcrumbs";
-import { fetchAPI } from "lib/api";
-import ServicesSlides from "@/components/Services/ServicesSlides";
-import Map from "@/components/ui/Map";
-import IntroCost from "@/components/ui/IntroCost";
-import BlogsBlockList from "@/components/Blogs/BlogsBlockList";
-import Address from "@/components/ui/Address";
-import Line from "@/components/ui/Line";
-import Seo from "@/components/seo";
+import Layout from '@/components/layout';
+import TitleSection from '@/components/ui/TitleSection';
+import BreadCrumbs from '@/components/ui/Breadcrumbs';
+import { fetchAPI } from 'lib/api';
+import ServicesSlides from '@/components/Services/ServicesSlides';
+import Map from '@/components/ui/Map';
+import IntroCost from '@/components/ui/IntroCost';
+import BlogsBlockList from '@/components/Blogs/BlogsBlockList';
+import Address from '@/components/ui/Address';
+import Line from '@/components/ui/Line';
+import Seo from '@/components/seo';
 
 function Contacts({ contact, blogs, data, menu, headerMenu }) {
   const seo = {
     metaTitle: contact.attributes.Seo.metaTitle,
     metaDescription: contact.attributes.Seo.metaDescription,
-    shareImage: "",
+    shareImage: '',
   };
 
   return (
@@ -27,7 +27,8 @@ function Contacts({ contact, blogs, data, menu, headerMenu }) {
       headerBg="white"
       footerBg="white"
       pillowColor="white"
-      variantSvg="darkSvg"   >
+      variantSvg="darkSvg"
+    >
       <Seo seo={seo} />
       <TitleSection text={contact.attributes.Title} />
       <div className="container">
@@ -37,7 +38,7 @@ function Contacts({ contact, blogs, data, menu, headerMenu }) {
         links={[
           {
             title: contact.attributes.Title,
-            path: "",
+            path: '',
             active: false,
           },
         ]}
@@ -69,22 +70,22 @@ function Contacts({ contact, blogs, data, menu, headerMenu }) {
 
 export async function getStaticProps({ locale }) {
   const [headerRes, menuRes, contactRes, blogsRes] = await Promise.all([
-    fetchAPI("/navigation/render/2", {
-      fields: ["title", "path"],
+    fetchAPI('/navigation/render/2', {
+      fields: ['title', 'path'],
       locale: locale,
     }),
-    fetchAPI("/navigation/render/3", {
-      fields: ["title", "path"],
+    fetchAPI('/navigation/render/3', {
+      fields: ['title', 'path'],
       locale: locale,
     }),
-    fetchAPI("/contact", {
-      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+    fetchAPI('/contact', {
+      fields: ['Title', 'Address', 'Phone', 'Email', 'PhoneLink'],
       locale: locale,
-      populate: ["ContactSocials", "Seo"],
+      populate: ['ContactSocials', 'Seo'],
     }),
-    fetchAPI("/blogs", {
-      fields: ["Title", "slug", "Preview"],
-      populate: ["tag", "Image_preview"],
+    fetchAPI('/blogs', {
+      fields: ['Title', 'slug', 'Preview'],
+      populate: ['tag', 'Image_preview'],
       locale: locale,
     }),
   ]);
@@ -97,9 +98,8 @@ export async function getStaticProps({ locale }) {
       contact: contactRes.data,
       blogs: blogsRes.data,
     },
-    revalidate: 3600,
+    revalidate: 60,
   };
 }
-
 
 export default Contacts;

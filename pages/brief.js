@@ -1,14 +1,21 @@
-import Layout from "@/components/layout";
-import useTranslation from "next-translate/useTranslation";
-import { fetchAPI } from "lib/api";
-import TitleSection from "@/components/ui/TitleSection";
-import BreadCrumbs from "@/components/ui/Breadcrumbs";
-import Line from "@/components/ui/Line";
-import FormBrief from "@/components/Brief/FormBrief";
-import Seo from "@/components/seo";
+import Layout from '@/components/layout';
+import useTranslation from 'next-translate/useTranslation';
+import { fetchAPI } from 'lib/api';
+import TitleSection from '@/components/ui/TitleSection';
+import BreadCrumbs from '@/components/ui/Breadcrumbs';
+import Line from '@/components/ui/Line';
+import FormBrief from '@/components/Brief/FormBrief';
+import Seo from '@/components/seo';
 
-export default function Brief({ categories, visobjs, seoBrief, data, menu, headerMenu }) {
-  const { t } = useTranslation("common");
+export default function Brief({
+  categories,
+  visobjs,
+  seoBrief,
+  data,
+  menu,
+  headerMenu,
+}) {
+  const { t } = useTranslation('common');
 
   const seo = {
     metaTitle: seoBrief.attributes.SeoBrief.metaTitle,
@@ -17,18 +24,25 @@ export default function Brief({ categories, visobjs, seoBrief, data, menu, heade
   };
 
   return (
-    <Layout bg="white" headerBg="white" footerBg="white" pillowColor={"grey"} data={data} headerContact={data.attributes}
+    <Layout
+      bg="white"
+      headerBg="white"
+      footerBg="white"
+      pillowColor={'grey'}
+      data={data}
+      headerContact={data.attributes}
       menu={menu}
-      header={headerMenu}>
+      header={headerMenu}
+    >
       <Seo seo={seo} />
-      <TitleSection text={t("brief.title_fill")} />
+      <TitleSection text={t('brief.title_fill')} />
       <div className="container">
         <Line variantColor="grey" />
       </div>
       <BreadCrumbs
         links={[
           {
-            title: t("brief.title_fill"),
+            title: t('brief.title_fill'),
           },
         ]}
       />
@@ -43,38 +57,42 @@ export default function Brief({ categories, visobjs, seoBrief, data, menu, heade
 }
 
 export async function getStaticProps({ locale }) {
-  const [headerRes,
+  const [
+    headerRes,
     contactRes,
     menuRes,
-    categoriesRes, visobjRes, seoBriefRes] = await Promise.all([
-      fetchAPI("/navigation/render/2", {
-        fields: ["title", "path"],
-        locale: locale,
-      }),
-      fetchAPI("/contact", {
-        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
-        locale: locale,
-        populate: "ContactSocials",
-      }),
-      fetchAPI("/navigation/render/3", {
-        fields: ["title", "path"],
-        locale: locale,
-      }),
-      fetchAPI("/categories", {
-        fields: ["name", "slug"],
-        locale: locale,
-      }),
-      fetchAPI("/visualization-objects", {
-        populate: "*",
-        locale: locale,
-      }),
-      fetchAPI("/about", {
-        fields: ["Title"],
-        populate: ["SeoBrief"],
+    categoriesRes,
+    visobjRes,
+    seoBriefRes,
+  ] = await Promise.all([
+    fetchAPI('/navigation/render/2', {
+      fields: ['title', 'path'],
+      locale: locale,
+    }),
+    fetchAPI('/contact', {
+      fields: ['Title', 'Address', 'Phone', 'Email', 'PhoneLink'],
+      locale: locale,
+      populate: 'ContactSocials',
+    }),
+    fetchAPI('/navigation/render/3', {
+      fields: ['title', 'path'],
+      locale: locale,
+    }),
+    fetchAPI('/categories', {
+      fields: ['name', 'slug'],
+      locale: locale,
+    }),
+    fetchAPI('/visualization-objects', {
+      populate: '*',
+      locale: locale,
+    }),
+    fetchAPI('/about', {
+      fields: ['Title'],
+      populate: ['SeoBrief'],
 
-        locale: locale,
-      }),
-    ]);
+      locale: locale,
+    }),
+  ]);
 
   return {
     props: {
@@ -85,7 +103,6 @@ export async function getStaticProps({ locale }) {
       visobjs: visobjRes.data,
       seoBrief: seoBriefRes.data,
     },
-    revalidate: 3600,
+    revalidate: 60,
   };
 }
-

@@ -1,14 +1,24 @@
-import Layout from "@/components/layout";
-import { fetchAPI } from "lib/api";
-import ServicesAbout from "@/components/Services/ServicesAbout";
-import BlogsBlockList from "@/components/Blogs/BlogsBlockList";
-import ServicesListHome from "@/components/Services/ServicesListHome";
-import Line from "@/components/ui/Line";
-import Wrapper from "@/components/ui/Wrapper";
-import ProjectsListForMain from "@/components/Projects/ProjectsListForMain";
-import Seo from "@/components/seo";
+import Layout from '@/components/layout';
+import { fetchAPI } from 'lib/api';
+import ServicesAbout from '@/components/Services/ServicesAbout';
+import BlogsBlockList from '@/components/Blogs/BlogsBlockList';
+import ServicesListHome from '@/components/Services/ServicesListHome';
+import Line from '@/components/ui/Line';
+import Wrapper from '@/components/ui/Wrapper';
+import ProjectsListForMain from '@/components/Projects/ProjectsListForMain';
+import Seo from '@/components/seo';
 
-const Home = ({ projects, services, servicesAbout, about, blogs, global, data, menu, headerMenu }) => {
+const Home = ({
+  projects,
+  services,
+  servicesAbout,
+  about,
+  blogs,
+  global,
+  data,
+  menu,
+  headerMenu,
+}) => {
   const seo = {
     metaTitle: global.attributes.defaultSeo.metaTitle,
     metaDescription: global.attributes.defaultSeo.metaDescription,
@@ -25,7 +35,8 @@ const Home = ({ projects, services, servicesAbout, about, blogs, global, data, m
       headerBg="black"
       footerBg="black"
       pillowColor="dark"
-      variantSvg="darkSvg">
+      variantSvg="darkSvg"
+    >
       <Seo seo={seo} />
       <ServicesAbout about={about} servicesAbout={servicesAbout} />
       <ServicesListHome services={services} />
@@ -57,43 +68,43 @@ export async function getStaticProps({ locale }) {
     blogRes,
     globalRes,
   ] = await Promise.all([
-    fetchAPI("/navigation/render/2", {
-      fields: ["title", "path"],
+    fetchAPI('/navigation/render/2', {
+      fields: ['title', 'path'],
       locale: locale,
     }),
-    fetchAPI("/contact", {
-      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+    fetchAPI('/contact', {
+      fields: ['Title', 'Address', 'Phone', 'Email', 'PhoneLink'],
       locale: locale,
-      populate: "ContactSocials",
+      populate: 'ContactSocials',
     }),
-    fetchAPI("/navigation/render/3", {
-      fields: ["title", "path"],
+    fetchAPI('/navigation/render/3', {
+      fields: ['title', 'path'],
       locale: locale,
     }),
-    fetchAPI("/projects", {
-      sort: ["ListPosition:asc"],
+    fetchAPI('/projects', {
+      sort: ['ListPosition:asc'],
       populate: {
-        Poster: "*",
-        Poster_for_mainPage: "*",
-        tags: "*",
+        Poster: '*',
+        Poster_for_mainPage: '*',
+        tags: '*',
       },
-      fields: ["title", "slug"],
+      fields: ['title', 'slug'],
       locale: locale,
       filters: {
         ShowOnMainPage: true,
         publishedAt: { ne: null },
       },
-      publicationState: "live",
+      publicationState: 'live',
       pagination: {
         start: 0,
         limit: 8,
       },
     }),
-    fetchAPI("/categories", {
-      populate: ["image"],
-      fields: ["name", "slug", "textPart1", "textPart2"],
+    fetchAPI('/categories', {
+      populate: ['image'],
+      fields: ['name', 'slug', 'textPart1', 'textPart2'],
       locale: locale,
-      publicationState: "live",
+      publicationState: 'live',
       filters: {
         ShowOnMainPage: true,
       },
@@ -102,35 +113,35 @@ export async function getStaticProps({ locale }) {
         limit: 3,
       },
     }),
-    fetchAPI("/categories", {
+    fetchAPI('/categories', {
       filters: {
         ShowAsSlide: true,
       },
-      fields: ["name", "slug"],
+      fields: ['name', 'slug'],
       locale: locale,
-      publicationState: "live",
+      publicationState: 'live',
       populate: {
         Slides: {
-          sort: ["SlidePosition:asc"],
-          populate: "*",
+          sort: ['SlidePosition:asc'],
+          populate: '*',
         },
-        imagePresentationLink: "*",
+        imagePresentationLink: '*',
       },
     }),
-    fetchAPI("/about", {
-      fields: ["SloganPart1", "SloganPart2"],
-      populate: ["Video"],
+    fetchAPI('/about', {
+      fields: ['SloganPart1', 'SloganPart2'],
+      populate: ['Video'],
       locale: locale,
     }),
-    fetchAPI("/blogs", {
-      fields: ["Title", "slug", "Preview"],
-      populate: ["tag", "Image_preview"],
+    fetchAPI('/blogs', {
+      fields: ['Title', 'slug', 'Preview'],
+      populate: ['tag', 'Image_preview'],
       locale: locale,
-      publicationState: "live",
+      publicationState: 'live',
     }),
-    fetchAPI("/global", {
+    fetchAPI('/global', {
       //fields: ["Logo"],
-      populate: ["defaultSeo"],
+      populate: ['defaultSeo'],
       locale: locale,
     }),
   ]);
@@ -147,7 +158,7 @@ export async function getStaticProps({ locale }) {
       menu: menuRes,
       headerMenu: headerRes,
     },
-    // revalidate: 3600,
+    revalidate: 60,
   };
 }
 

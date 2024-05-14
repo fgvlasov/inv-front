@@ -1,12 +1,12 @@
-import Logo from "./ui/Logo";
-import Language from "./ui/Language";
-import Burger from "./ui/Burger";
-import MobileMenu from "./ui/MobileMenu";
-import { useState } from "react";
-import Nav from "./ui/Nav";
-import Order from "./ui/Order";
-import useTranslation from "next-translate/useTranslation";
-import Line from "./ui/Line";
+import Logo from './ui/Logo';
+import Language from './ui/Language';
+import Burger from './ui/Burger';
+import MobileMenu from './ui/MobileMenu';
+import { useState } from 'react';
+import Nav from './ui/Nav';
+import Order from './ui/Order';
+import useTranslation from 'next-translate/useTranslation';
+import Line from './ui/Line';
 
 export default function Header({ variant, variantSvg, menu, contactData }) {
   const i18n = useTranslation();
@@ -29,13 +29,11 @@ export default function Header({ variant, variantSvg, menu, contactData }) {
     setModalIsOpen(false);
   };
 
-
-
-  const colorLine = variant === "black" ? "eclipse" : "grey";
+  const colorLine = variant === 'black' ? 'eclipse' : 'grey';
   const headerClass =
-    variant === "black"
-      ? "bg-black text-white"
-      : "bg-whisper text-black-russian";
+    variant === 'black'
+      ? 'bg-black text-white'
+      : 'bg-whisper text-black-russian';
 
   return (
     <header className={`${headerClass} relative text-inherit`}>
@@ -44,7 +42,7 @@ export default function Header({ variant, variantSvg, menu, contactData }) {
       pt-5 flex-wrap pb-5 md:py-[17px]
       lg:pb-10 lg:pt-[38px] lg:flex-nowrap"
       >
-        {" "}
+        {' '}
         <Logo color="inherit" />
         <Language lang={locale} />
         <Burger onClick={onOpenNav} color={variant} />

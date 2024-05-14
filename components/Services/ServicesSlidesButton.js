@@ -10,7 +10,7 @@ export default function ServicesSlidesButton({
     <Link
       href={link}
       className="flex items-center mt-7"
-      rel="noopener noreferrer noffolow"
+      rel="noopener noreferrer nofollow"
       target="_blank"
     >
       <span className={`text-${variant} mr-5 text-sm`}>{text}</span>

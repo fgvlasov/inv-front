@@ -56,7 +56,7 @@ export default function ProjectAbout({
             href={CustomerUrl}
             className="underline"
             target="_blank"
-            rel="noffolow"
+            rel="nofollow"
           >
             {CustomerUrl}
           </Link>
