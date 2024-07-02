@@ -14,6 +14,8 @@ import ServicesForCategory from '@/components/Services/ServicesForCategory';
 import Line from '@/components/ui/Line';
 
 import ServicesWhatIs from '@/components/Services/ServicesWhatIs';
+import ServicesAdvantages from '@/components/Services/ServicesAdvantages';
+//import ServicesPrice from '@/components/Services/ServicesPrice';
 
 export default function Service({
   category,
@@ -31,6 +33,8 @@ export default function Service({
     metaDescription: category.attributes.SEO[0].metaTitle,
     shareImage: category.attributes.image,
   };
+
+  //console.log(category);
 
   return (
     <Layout
@@ -70,7 +74,7 @@ export default function Service({
 
         <ServicesForCategory parent={category.id} />
 
-        {category.attributes.What_is.What_is_1 && (
+        {category.attributes.What_is && (
           <ServicesWhatIs data={category.attributes.What_is} />
         )}
 
@@ -79,6 +83,11 @@ export default function Service({
         <div className="container contRightFull">
           <ServicesSlides />
         </div>
+
+        {category.attributes.Category_advantages && (
+          <ServicesAdvantages data={category.attributes.Category_advantages} />
+        )}
+
         <ProjectsList
           projects={projects}
           moreProjects={true}
@@ -128,7 +137,20 @@ export async function getStaticProps({ params, locale }) {
       fetchAPI('/categories', {
         //fields: ["name", "text", "Description"],
         locale: locale,
-        populate: '*',
+        populate: {
+          Category_advantages: {
+            populate: '*',
+          },
+          SEO: {
+            populate: '*',
+          },
+          image: {
+            populate: '*',
+          },
+          What_is: {
+            populate: '*',
+          },
+        },
         filters: {
           slug: params.slug,
         },
