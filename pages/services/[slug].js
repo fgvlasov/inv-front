@@ -15,7 +15,7 @@ import Line from '@/components/ui/Line';
 
 import ServicesWhatIs from '@/components/Services/ServicesWhatIs';
 import ServicesAdvantages from '@/components/Services/ServicesAdvantages';
-//import ServicesPrice from '@/components/Services/ServicesPrice';
+import ServicesPrice from '@/components/Services/ServicesPrice';
 
 export default function Service({
   category,
@@ -65,29 +65,26 @@ export default function Service({
             },
           ]}
         />
-
         <ServiceIntro
           title={t('About service')}
           text={category.attributes.Description}
           image={category.attributes.image}
         />
-
         <ServicesForCategory parent={category.id} />
-
         {category.attributes.What_is && (
           <ServicesWhatIs data={category.attributes.What_is} />
         )}
-
         <IntroCost />
-
         <div className="container contRightFull">
           <ServicesSlides />
         </div>
-
         {category.attributes.Category_advantages && (
           <ServicesAdvantages data={category.attributes.Category_advantages} />
         )}
 
+        {category.attributes.Category_project_price && (
+          <ServicesPrice data={category.attributes.Category_project_price} />
+        )}
         <ProjectsList
           projects={projects}
           moreProjects={true}
@@ -139,6 +136,9 @@ export async function getStaticProps({ params, locale }) {
         locale: locale,
         populate: {
           Category_advantages: {
+            populate: '*',
+          },
+          Category_project_price: {
             populate: '*',
           },
           SEO: {
