@@ -17,7 +17,7 @@ import ServicesWhatIs from '@/components/Services/ServicesWhatIs';
 import ServicesAdvantages from '@/components/Services/ServicesAdvantages';
 import ServicesPrice from '@/components/Services/ServicesPrice';
 //import ServicesInfo from '@/components/Services/ServicesInfo';
-import ServicesWorkPlan from '@/components/Services/ServicesWorkPlan.js';
+
 import ServicesChoice from '@/components/Services/ServicesChoise';
 
 export default function Service({
