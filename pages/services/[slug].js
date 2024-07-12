@@ -16,6 +16,9 @@ import Line from '@/components/ui/Line';
 import ServicesWhatIs from '@/components/Services/ServicesWhatIs';
 import ServicesAdvantages from '@/components/Services/ServicesAdvantages';
 import ServicesPrice from '@/components/Services/ServicesPrice';
+//import ServicesInfo from '@/components/Services/ServicesInfo';
+import ServicesWorkPlan from '@/components/Services/ServicesWorkPlan.js';
+import ServicesChoice from '@/components/Services/ServicesChoise';
 
 export default function Service({
   category,
@@ -91,6 +94,14 @@ export default function Service({
           // projectsQuantity='100'
           focusService={category.id}
         />
+
+        {category.attributes.Category_why_choose && (
+          <ServicesChoice data={category.attributes.Category_why_choose} />
+        )}
+
+        {/* {category.attributes.Category_workplan && (
+          <ServicesWorkPlan data={category.attributes.Category_workplan} />
+        )} */}
       </Wrapper>
     </Layout>
   );
@@ -139,6 +150,12 @@ export async function getStaticProps({ params, locale }) {
             populate: '*',
           },
           Category_project_price: {
+            populate: '*',
+          },
+          Category_workplan: {
+            populate: '*',
+          },
+          Category_why_choose: {
             populate: '*',
           },
           SEO: {
