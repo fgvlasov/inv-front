@@ -19,11 +19,16 @@ import ServicesPrice from '@/components/Services/ServicesPrice';
 //import ServicesInfo from '@/components/Services/ServicesInfo';
 
 import ServicesChoice from '@/components/Services/ServicesChoise';
+import FormService from '@/components/ui/FormService';
+import FormConsultation from '@/components/ui/FormConsultation';
+import ServicesOtherServices from '@/components/Services/ServicesOtherServices';
+import ServicesThreePage from '@/components/Services/ServicesThreeOnPage';
 
 export default function Service({
   category,
   projects,
   data,
+  threeCategories,
   menu,
   headerMenu,
 }) {
@@ -102,6 +107,13 @@ export default function Service({
         {/* {category.attributes.Category_workplan && (
           <ServicesWorkPlan data={category.attributes.Category_workplan} />
         )} */}
+        {/* <ServicesOtherServices /> */}
+
+        <ServicesThreePage
+          service={category.attributes.Category_other_services}
+          items={threeCategories}
+        />
+        {/* <FormConsultation /> */}
       </Wrapper>
     </Layout>
   );
@@ -126,63 +138,84 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const [headerRes, contactRes, menuRes, matchingCategories, projectsRes] =
-    await Promise.all([
-      fetchAPI('/navigation/render/2', {
-        fields: ['title', 'path'],
-        locale: locale,
-      }),
-      fetchAPI('/contact', {
-        fields: ['Title', 'Address', 'Phone', 'Email', 'PhoneLink'],
-        locale: locale,
-        populate: 'ContactSocials',
-      }),
-      fetchAPI('/navigation/render/3', {
-        fields: ['title', 'path'],
-        locale: locale,
-      }),
-
-      fetchAPI('/categories', {
-        //fields: ["name", "text", "Description"],
-        locale: locale,
-        populate: {
-          Category_advantages: {
-            populate: '*',
-          },
-          Category_project_price: {
-            populate: '*',
-          },
-          Category_workplan: {
-            populate: '*',
-          },
-          Category_why_choose: {
-            populate: '*',
-          },
-          SEO: {
-            populate: '*',
-          },
-          image: {
-            populate: '*',
-          },
-          What_is: {
-            populate: '*',
-          },
+  const [
+    headerRes,
+    contactRes,
+    menuRes,
+    threeCategoriesRes,
+    matchingCategories,
+    projectsRes,
+  ] = await Promise.all([
+    fetchAPI('/navigation/render/2', {
+      fields: ['title', 'path'],
+      locale: locale,
+    }),
+    fetchAPI('/contact', {
+      fields: ['Title', 'Address', 'Phone', 'Email', 'PhoneLink'],
+      locale: locale,
+      populate: 'ContactSocials',
+    }),
+    fetchAPI('/navigation/render/3', {
+      fields: ['title', 'path'],
+      locale: locale,
+    }),
+    fetchAPI('/categories', {
+      populate: ['image'],
+      fields: ['name', 'slug', 'textPart1', 'textPart2'],
+      locale: locale,
+      publicationState: 'live',
+      filters: {
+        slug: { $ne: params.slug },
+      },
+      pagination: {
+        start: 0,
+        limit: 3,
+      },
+    }),
+    fetchAPI('/categories', {
+      //fields: ["name", "text", "Description"],
+      locale: locale,
+      populate: {
+        Category_advantages: {
+          populate: '*',
         },
-        filters: {
-          slug: params.slug,
+        Category_project_price: {
+          populate: '*',
         },
-      }),
-      fetchAPI('/projects', {
-        //fields: ["name", "text", "Description"],
-        locale: locale,
-        populate: '*',
-        filters: {
-          categories: {
-            slug: { $eq: params.slug },
-          },
+        Category_workplan: {
+          populate: '*',
         },
-      }),
-    ]);
+        Category_why_choose: {
+          populate: '*',
+        },
+        Category_other_services: {
+          populate: '*',
+        },
+        SEO: {
+          populate: '*',
+        },
+        image: {
+          populate: '*',
+        },
+        What_is: {
+          populate: '*',
+        },
+      },
+      filters: {
+        slug: params.slug,
+      },
+    }),
+    fetchAPI('/projects', {
+      //fields: ["name", "text", "Description"],
+      locale: locale,
+      populate: '*',
+      filters: {
+        categories: {
+          slug: { $eq: params.slug },
+        },
+      },
+    }),
+  ]);
 
   // const matchingCategories = await fetchAPI("/categories", {
   //   //fields: ["name", "text", "Description"],
@@ -209,6 +242,7 @@ export async function getStaticProps({ params, locale }) {
       data: contactRes.data,
       menu: menuRes,
       headerMenu: headerRes,
+      threeCategories: threeCategoriesRes.data,
       category: matchingCategories.data[0],
       projects: projectsRes.data,
     },

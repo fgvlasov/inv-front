@@ -27,7 +27,7 @@ export default function ServicesChoice({ data }) {
               {data.Why_1_title_mini}
             </h2>
           )}
-          <p className="font-arial text-black text-base leading-5 w-full md:w-[400px]">
+          <p className="whitespace-pre-wrap font-arial text-black text-base leading-5 w-full md:w-[400px]">
             {data.Why_1_text}
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function ServicesChoice({ data }) {
               {data.Why_2_title_mini}
             </h2>
           )}
-          <p className="font-arial text-black text-base leading-5 w-full md:w-[400px]">
+          <p className="whitespace-pre-wrap font-arial text-black text-base leading-5 w-full md:w-[400px]">
             {data.Why_2_text}
           </p>
         </div>

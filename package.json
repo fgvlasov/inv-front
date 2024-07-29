@@ -38,6 +38,7 @@
   "devDependencies": {
     "classnames": "^2.5.1",
     "next-translate-plugin": "^2.0.5",
+    "react-responsive": "^10.0.0",
     "tailwind-merge": "^2.3.0"
   }
 }

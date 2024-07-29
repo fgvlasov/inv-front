@@ -9,23 +9,23 @@ export default function ServicesPrice({ data }) {
   const items = [
     {
       title: data.Project_price_title_1,
-      text: data.Project_price_text_1_cs,
+      text: data.Project_price_text_1,
     },
     {
       title: data.Project_price_title_2,
-      text: data.Project_price_text_2_cs,
+      text: data.Project_price_text_2,
     },
     {
       title: data.Project_price_title_3,
-      text: data.Project_price_text_3_cs,
+      text: data.Project_price_text_3,
     },
     {
       title: data.Project_price_title_4,
-      text: data.Project_price_text_4_cs,
+      text: data.Project_price_text_4,
     },
     {
       title: data.Project_price_title_5,
-      text: data.Project_price_text_5_cs,
+      text: data.Project_price_text_5,
     },
   ];
 

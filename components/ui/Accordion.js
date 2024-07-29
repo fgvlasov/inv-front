@@ -2,7 +2,6 @@
 
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 
 function AccordionItemText({ text, show }) {
   const ref = useRef(null);
@@ -15,8 +14,8 @@ function AccordionItemText({ text, show }) {
         maxHeight: show ? ref.current.scrollHeight : 0,
       }}
     >
-      <p className="m-4 px-3">
-        <ReactMarkdown>{text}</ReactMarkdown>
+      <p className="whitespace-pre-wrap m-4 px-3">
+        {text}
       </p>
     </div>
   );
