@@ -94,13 +94,20 @@ export default function Service({
         {category.attributes.Category_project_price && (
           <ServicesPrice data={category.attributes.Category_project_price} />
         )}
-        <section className="container mt-10">
-          <h2 className="mb-7 text-3.5xl w-full md:w-[335px] text-black-russian3 font-arial font-normal lg:text-4xl lg:w-full">
-            Наши работы
-          </h2>
-          {category.attributes.Our_works_text &&
-            category.attributes.Our_works_text}
+
+        <section className="container mt-15">
+          <div className="flex flex-col md:flex-row  justify-start gap-6 md:gap-20">
+            <h2 className=" whitespace-nowrap mb-7 text-3.5xl text-black-russian3 font-arial font-normal lg:text-4xl  w-[260px] ">
+              Наши работы
+            </h2>
+            {category.attributes.Our_works_text && (
+              <div className="whitespace-pre-wrap">
+                {category.attributes.Our_works_text}
+              </div>
+            )}
+          </div>
         </section>
+
         <ProjectsList
           projects={projects}
           moreProjects={true}
@@ -110,7 +117,7 @@ export default function Service({
         {category.attributes.Category_workplan && (
           <ServicesWorkPlan data={category.attributes.Category_workplan} />
         )}
-		
+
         {category.attributes.Category_why_choose && (
           <ServicesChoice data={category.attributes.Category_why_choose} />
         )}
