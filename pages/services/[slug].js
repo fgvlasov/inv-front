@@ -95,7 +95,7 @@ export default function Service({
           <ServicesPrice data={category.attributes.Category_project_price} />
         )}
 
-        <section className="container mt-15">
+        <section className="container mt-10">
           <div className="flex flex-col md:flex-row  justify-start gap-6 md:gap-20">
             <h2 className=" whitespace-nowrap mb-7 text-3.5xl text-black-russian3 font-arial font-normal lg:text-4xl  w-[260px] ">
               Наши работы
@@ -106,6 +106,7 @@ export default function Service({
               </div>
             )}
           </div>
+          
         </section>
 
         <ProjectsList

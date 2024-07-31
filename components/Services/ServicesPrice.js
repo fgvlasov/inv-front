@@ -1,5 +1,6 @@
 import Accordion from '../ui/Accordion';
 import { getStrapiMedia } from 'lib/media';
+import Line from '../ui/Line';
 
 export default function ServicesPrice({ data }) {
   if (!data) {
@@ -35,7 +36,7 @@ export default function ServicesPrice({ data }) {
       <h1 className="mb-7 text-3.5xl w-full md:w-[335px] text-black-russian3 font-arial font-normal lg:text-4xl lg:w-full">
         {data.Title}
       </h1>
-      <div className="block lg:flex lg:flex-row-reverse lg:mt-15">
+      <div className="block lg:flex lg:flex-row-reverse lg:mt-15 mb-10">
         <Accordion items={items} />
         <div
           alt="#"
@@ -46,6 +47,7 @@ export default function ServicesPrice({ data }) {
           }}
         />
       </div>
+      <Line width="100%" variantColor="bg-light-grey" />
     </section>
   );
 }
