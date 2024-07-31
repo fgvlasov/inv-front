@@ -23,6 +23,7 @@ import FormService from '@/components/ui/FormService';
 import FormConsultation from '@/components/ui/FormConsultation';
 import ServicesOtherServices from '@/components/Services/ServicesOtherServices';
 import ServicesThreePage from '@/components/Services/ServicesThreeOnPage';
+import ServicesWorkPlan from '@/components/Services/ServicesWorkPlan';
 
 export default function Service({
   category,
@@ -93,20 +94,27 @@ export default function Service({
         {category.attributes.Category_project_price && (
           <ServicesPrice data={category.attributes.Category_project_price} />
         )}
+        <section className="container mt-10">
+          <h2 className="mb-7 text-3.5xl w-full md:w-[335px] text-black-russian3 font-arial font-normal lg:text-4xl lg:w-full">
+            Наши работы
+          </h2>
+          {category.attributes.Our_works_text &&
+            category.attributes.Our_works_text}
+        </section>
         <ProjectsList
           projects={projects}
           moreProjects={true}
           // projectsQuantity='100'
           focusService={category.id}
         />
-
+        {category.attributes.Category_workplan && (
+          <ServicesWorkPlan data={category.attributes.Category_workplan} />
+        )}
+		
         {category.attributes.Category_why_choose && (
           <ServicesChoice data={category.attributes.Category_why_choose} />
         )}
 
-        {/* {category.attributes.Category_workplan && (
-          <ServicesWorkPlan data={category.attributes.Category_workplan} />
-        )} */}
         {/* <ServicesOtherServices /> */}
 
         <ServicesThreePage

@@ -2,7 +2,7 @@ import { getStrapiMedia } from 'lib/media';
 import Link from 'next/link';
 
 export default function ServicesThreePage({ service, items }) {
-  console.log(items);
+  
   return (
     <section
       className="container

@@ -2,7 +2,9 @@
 
 import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
-import { SwiperSlide, Swiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
 import EnumCircle from '../ui/EnumCircle.js';
 import { useSlidesTinting } from 'lib/useSlidesTinting.js';
 
@@ -31,7 +33,7 @@ function SlidePaginationButton({ onClick, direction }) {
 
 export default function WorkPlanSlider({ items }) {
   const swiperRef = useRef();
-
+  
   const { onTransitionEnd } = useSlidesTinting(swiperRef);
 
   const prevSlide = () => swiperRef.current.slidePrev();
@@ -53,7 +55,7 @@ export default function WorkPlanSlider({ items }) {
         }}
         slidesPerView={'auto'}
         scrollbar={{ draggable: true }}
-        className="flex gap-2 md:gap-8 relative"
+        className="flex gap-2 md:gap-8 relative !-mr-[0.9375rem] md:!-mr-[85px]"
       >
         {items?.map((item, key) => (
           <SwiperSlide
