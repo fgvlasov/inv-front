@@ -90,7 +90,7 @@ function RequestTexts({ className }) {
   );
 }
 
-export default function FormConsultation({ onSubmitForm }) {
+export default function FormConsultation({service}) {
   const methods = useForm();
   const checkUser = useEnquiryForm();
   const [loading, setLoading] = useState(false);
@@ -126,11 +126,25 @@ export default function FormConsultation({ onSubmitForm }) {
     }
   };
   return (
-    <div className="container mt-15 pb-[70px] mb:pd-[70px] lg:pb-[180px]">
-      <div className="flex flex-row items-center gap-[244px]">
-        <h1 className="mb-10 text-3.5xl tracking-tight leading-[30px] text-black-russian3 font-arial font-normal pt-24 xl:pt-0 lg:text-4xl lg:leading-10 w-[256px] md:w-[348px]">
-          Ваш проект в шаге от реализации
-        </h1>
+    <section className="container mt-15 pb-[70px] mb:pd-[70px] lg:pb-[180px]">
+      <div className="flex flex-col md:flex-row  justify-start gap-20 ">
+        <h2 className="grow-0 w-[329px] xl:w-[494px] text-3.5xl leading-[30px] xl:text-4xl xl:leading-[46px] text-black-russian3 font-arial font-normal">
+          {service.Title}
+        </h2>
+        {service && (
+          <div>
+            {service.Form_Consult_text1 && (
+              <p className="whitespace-pre-wrap font-normal font-arial text-lg leading-[25px] text-black w-full mb-5  xl:w-[840px] xl:mb-7">
+                {service.Form_Consult_text1}
+              </p>
+            )}
+            {service.Form_Consult_text2 && (
+              <p className="whitespace-pre-wrap font-normal font-arial text-base leading-[25px] text-black opacity-60 w-full xl:w-[840px]">
+                {service.Form_Consult_text2}
+              </p>
+            )}
+          </div>
+        )}
       </div>
       <div className="bg-black opacity-90 bg-[url(/image/request_1.png)] md:bg-[url(/image/request_2.png)] lg:bg-[url(/image/request_3.png)] rounded-[30px] bg-cover w-full px-[35px] pt-[65px] pb-25 relative overflow-hidden xl:mt-15 lg:pl-[85px]">
         <span className="block absolute left-0 top-0 bg-[url(/image/svg/blueness_1.svg)] w-[250px] h-[250px] brightness-150"></span>
@@ -203,6 +217,6 @@ export default function FormConsultation({ onSubmitForm }) {
           </form>
         </FormProvider>
       </div>
-    </div>
+    </section>
   );
 }

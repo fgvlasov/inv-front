@@ -127,13 +127,11 @@ export default function Service({
           <ServicesChoice data={category.attributes.Category_why_choose} />
         )}
 
-        {/* <ServicesOtherServices /> */}
-
         <ServicesThreePage
           service={category.attributes.Category_other_services}
           items={threeCategories}
         />
-        {/* <FormConsultation /> */}
+        <FormConsultation service={category.attributes.Service_consultation} />
       </Wrapper>
     </Layout>
   );
@@ -209,6 +207,9 @@ export async function getStaticProps({ params, locale }) {
           populate: '*',
         },
         Category_other_services: {
+          populate: '*',
+        },
+        Service_consultation: {
           populate: '*',
         },
         SEO: {
