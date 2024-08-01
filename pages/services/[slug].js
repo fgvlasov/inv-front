@@ -24,6 +24,7 @@ import FormConsultation from '@/components/ui/FormConsultation';
 import ServicesOtherServices from '@/components/Services/ServicesOtherServices';
 import ServicesThreePage from '@/components/Services/ServicesThreeOnPage';
 import ServicesWorkPlan from '@/components/Services/ServicesWorkPlan';
+import ServicesVideo from '@/components/Services/ServicesVideo';
 
 export default function Service({
   category,
@@ -106,7 +107,6 @@ export default function Service({
               </div>
             )}
           </div>
-          
         </section>
 
         <ProjectsList
@@ -117,6 +117,10 @@ export default function Service({
         />
         {category.attributes.Category_workplan && (
           <ServicesWorkPlan data={category.attributes.Category_workplan} />
+        )}
+
+        {category.attributes.Service_video && (
+          <ServicesVideo image={category.attributes.Service_video} />
         )}
 
         {category.attributes.Category_why_choose && (
@@ -213,6 +217,9 @@ export async function getStaticProps({ params, locale }) {
         image: {
           populate: '*',
         },
+        Service_video: {
+          populate: '*',
+        },
         What_is: {
           populate: '*',
         },
@@ -222,7 +229,7 @@ export async function getStaticProps({ params, locale }) {
       },
     }),
     fetchAPI('/projects', {
-      fields: ['Title',  'slug'],
+      fields: ['Title', 'slug'],
       locale: locale,
       populate: ['Poster', 'tags'],
       publicationState: 'live',

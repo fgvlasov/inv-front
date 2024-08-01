@@ -19,7 +19,7 @@ export default function ProjectsList({
   return (
     <section
       className="container bg-whisper relative z-10 rounded-5xl pb-6 pt-6 text-blackRussian
-    md:pb-12 lg:pt-12 lg:pb-9 lg:rounded-7xl overflow-hidden"
+    md:pb-6 lg:pt-12 lg:rounded-7xl overflow-hidden"
     >
       <div>
         <ResponsiveMasonry
