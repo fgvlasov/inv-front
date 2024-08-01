@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import 'swiper/css';
 
 import EnumCircle from '../ui/EnumCircle.js';
 import { useSlidesTinting } from 'lib/useSlidesTinting.js';

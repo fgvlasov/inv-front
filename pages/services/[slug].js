@@ -222,9 +222,10 @@ export async function getStaticProps({ params, locale }) {
       },
     }),
     fetchAPI('/projects', {
-      //fields: ["name", "text", "Description"],
+      fields: ['Title',  'slug'],
       locale: locale,
-      populate: '*',
+      populate: ['Poster', 'tags'],
+      publicationState: 'live',
       filters: {
         categories: {
           slug: { $eq: params.slug },
