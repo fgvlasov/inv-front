@@ -183,7 +183,7 @@ export default function FormConsultation({service}) {
               />
               <div className="group">
                 <button
-                  disabled={!methods.formState.isValid}
+                  disabled={!methods.formState.isValid || !agreementCheck}
                   className="bg-blue py-[6.5px] pl-6 pr-1 flex rounded-6xl items-center  group-hover:bg-white gap-[50px] w-fit mx-auto xl:m-0"
                 >
                   <span className="inline-block font-normal font-arial text-base text-white group-hover:text-black">
