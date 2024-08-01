@@ -13,6 +13,7 @@ import { twMerge } from 'tailwind-merge';
 
 import classNames from 'classnames';
 import Checkbox from './Checkbox';
+import ButtonSubmit from './ButtonSubmit';
 
 function FormInput({ type, id, placeholder, name, pattern, register }) {
   const { mask } = useContext(GlobalContext);
@@ -113,7 +114,7 @@ export default function FormConsultation({service}) {
       const isUser = await checkUser();
       //console.log(isUser);
       if (isUser) {
-        await sendServiceConsultation({ ...data, Agreement: true });
+        await sendServiceConsultation({ ...data, Agreement: agreementCheck });
         openSuccessToast();
       } else {
         openErrorToast();
@@ -180,25 +181,26 @@ export default function FormConsultation({service}) {
                 pattern={{ required: 'Phone is required' }}
                 register={methods.register}
               />
-
-              <button
-                disabled={!methods.formState.isValid}
-                className="bg-blue py-[6.5px] pl-6 pr-1 flex rounded-6xl items-center  hover:bg-royal-blue gap-[50px] w-fit mx-auto xl:m-0"
-              >
-                <span className="inline-block font-normal font-arial text-base text-white">
-                  Отправить
-                </span>
-                <span className="bg-white w-[37px] h-[37px] flex justify-center items-center rounded-full hover:bg-royal-blue ml-10 transition">
-                  <svg className='w-[9px] h-[15px] viewBox="0 0 9 15" rotate-180'>
-                    <path
-                      d="M8.15625 14.1055L1.84046 7.39494L8.15625 0.684416"
-                      stroke="black"
-                      strokeWidth="1.5"
-                      fill="transparent"
-                    />
-                  </svg>
-                </span>
-              </button>
+              <div className="group">
+                <button
+                  disabled={!methods.formState.isValid}
+                  className="bg-blue py-[6.5px] pl-6 pr-1 flex rounded-6xl items-center  group-hover:bg-white gap-[50px] w-fit mx-auto xl:m-0"
+                >
+                  <span className="inline-block font-normal font-arial text-base text-white group-hover:text-black">
+                    Отправить
+                  </span>
+                  <span className="bg-white w-[37px] h-[37px] flex justify-center items-center rounded-full group-hover:bg-royal-blue ml-10 transition">
+                    <svg className='w-[9px] h-[15px] viewBox="0 0 9 15" rotate-180'>
+                      <path
+                        d="M8.15625 14.1055L1.84046 7.39494L8.15625 0.684416"
+                        stroke="black"
+                        strokeWidth="1.5"
+                        fill="transparent"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
             </div>
             <div className="flex items-start mt-18 lg:mt-12">
               <Checkbox
