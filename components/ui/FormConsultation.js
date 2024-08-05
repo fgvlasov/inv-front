@@ -147,7 +147,7 @@ export default function FormConsultation({service}) {
           </div>
         )}
       </div>
-      <div className="bg-black opacity-90 bg-[url(/image/request_1.png)] md:bg-[url(/image/request_2.png)] lg:bg-[url(/image/request_3.png)] rounded-[30px] bg-cover w-full px-[35px] pt-[65px] pb-25 relative overflow-hidden xl:mt-15 lg:pl-[85px]">
+      <div className="bg-black opacity-90 bg-[url('/image/content/bg-intro-mob.png')]  md:bg-[url('/image/content/bg-intro.png')] bg-no-repeat bg-cover rounded-[30px] w-full px-[35px] pt-[65px] pb-25 relative overflow-hidden xl:mt-15 lg:pl-[85px]">
         <span className="block absolute left-0 top-0 bg-[url(/image/svg/blueness_1.svg)] w-[250px] h-[250px] brightness-150"></span>
         <span className="hidden lg:block absolute left-0 bottom-0 bg-no-repeat bg-[url(/image/svg/blueness_2.svg)] w-[905px] h-[199px] brightness-150"></span>
         <h1 className="text-3.5xl leading-[30px] md:text-4xl md:leading-[40px] xl:text-[60px] xl:leading-[60px] text-white font-normal font-arial mb-5 text-center xl:text-left">
