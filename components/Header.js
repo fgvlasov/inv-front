@@ -1,5 +1,4 @@
 import Logo from './ui/Logo';
-import Language from './ui/Language';
 import Burger from './ui/Burger';
 import MobileMenu from './ui/MobileMenu';
 import { useState } from 'react';
@@ -44,7 +43,7 @@ export default function Header({ variant, variantSvg, menu, contactData }) {
       >
         {' '}
         <Logo color="inherit" />
-        <Language lang={locale} />
+        {/* <Language lang={locale} /> */}
         <Burger onClick={onOpenNav} color={variant} />
         {isNavOpen && (
           <MobileMenu
