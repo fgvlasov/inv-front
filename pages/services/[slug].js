@@ -40,7 +40,7 @@ export default function Service({
 
   const seo = {
     metaTitle: category.attributes.SEO[0].metaTitle,
-    metaDescription: category.attributes.SEO[0].metaTitle,
+    metaDescription: category.attributes.SEO[0].metaDescription,
     shareImage: category.attributes.image,
   };
 
