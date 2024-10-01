@@ -17,7 +17,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
         md:pt-[132px] xl:grid xl:grid-cols-[2fr, 1fr] xl:grid-rows-2 xl:pt-24.5 
 		gap-5  xl:pb-[136px]"
         >
-          <h2
+          <h1
             className=" tracking-tight mb-25 flex flex-wrap items-baseline 
 			md:mb-15 xl:justify-between xl:max-w-[887px] xl:self-start xl:mb-0 titleAbout"
           >
@@ -47,7 +47,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
               </svg>{' '}
               {about.attributes.SloganPart2}
             </span>
-          </h2>
+          </h1>
 
           <div
             className="w-full max-w-full ml-auto row-start-1 row-end-3 col-start-2 col-end-3
