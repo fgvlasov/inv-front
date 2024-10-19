@@ -17,7 +17,7 @@ export default function Copyright() {
         className="pt-6 pb-5 block w-full opacity-50 md:w-auto
       md:mb-0"
       >
-        2023 &copy; invert.studio
+        2024 &copy; invert.studio
       </p>
       <a href="/confidence" className="underline decoration-1 opacity-50">
         {t("confidence_policy")}
