@@ -11,6 +11,7 @@ import ProjectAbout from '@/components/Projects/ProjectAbout';
 import IntroCost from '@/components/ui/IntroCost';
 import PortfolioCarousel from '@/components/Portfolio/PortfolioCarousel';
 
+
 function Project({ project, projectsOther, data, menu, headerMenu }) {
   const { t } = useTranslation('common');
 
@@ -20,7 +21,7 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
     shareImage: project.attributes.Poster,
     project: true,
   };
-
+  
   const breadCrumbsItems = [
     {
       title: t('works.title'),
@@ -30,7 +31,7 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
       title: project.attributes.Title,
     },
   ];
-
+    
   return (
     <Layout
       data={data}
@@ -53,12 +54,13 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
         <Line variantColor="grey" />
       </div>
       <BreadCrumbs links={breadCrumbsItems} />
-
+      
       <ProjectCarousel
         photos={project.attributes.ProjectSliderFotos.data}
         poster={project.attributes.Poster}
         videoFiles={project.attributes.VideoFile}
-        verticalPhotos={project.attributes.Vertical_photos}
+        rtVideos={project.attributes.rtVideos}
+        // verticalPhotos={project.attributes.Vertical_photos}
       />
 
       <ProjectAbout
@@ -86,13 +88,14 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
   );
 }
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const projectsSlug = await fetchAPI('/projects', {
     fields: ['slug'],
     pagination: {
       pageSize: 100,
     },
-  });
+  }
+);
 
   const projectsSlugPath = projectsSlug.data.map((project) => ({
     params: {
@@ -108,7 +111,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params, locale }) {
+export async function getServerSideProps({ params, locale }) {
   // const categoriesRes = await fetchAPI("/categories");
 
   const [headerRes, contactRes, menuRes, projectsOtherRes, projectsRes] =
@@ -137,7 +140,7 @@ export async function getStaticProps({ params, locale }) {
       }),
       fetchAPI('/projects', {
         locale: locale,
-        populate: '*',
+        populate: ['Poster', 'tags', 'rtVideos.poster', 'Seo', 'ProjectSliderFotos', 'VideoFile', 'categories', ],
         fields: '*',
         pagination: {
           pageSize: 100,
@@ -155,8 +158,7 @@ export async function getStaticProps({ params, locale }) {
       headerMenu: headerRes,
       project: projectsRes.data[0],
       projectsOther: projectsOtherRes.data,
-    },
-    revalidate: 3600,
+    }
   };
 }
 

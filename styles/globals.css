@@ -1,5 +1,6 @@
 html,
 body {
+  scroll-behavior: smooth;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -41,5 +42,5 @@ input:focus {
   overflow: hidden;
 }
 .bgBriefCost {
-  background-position: !important center;
+  background-position: center !important ;
 }

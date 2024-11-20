@@ -37,3 +37,9 @@ yarn-error.log*
 next-env.d.ts
 
 .new.js-backup
+# next-video
+videos/*
+!videos/*.json
+!videos/*.js
+!videos/*.ts
+public/_next-video

@@ -23,7 +23,7 @@ export default function Portfolio({
   const { t } = useTranslation('common');
   const i18n = useTranslation();
   const locale = i18n.lang;
-
+  
   const seo = {
     metaTitle: t('works.title'),
     metaDescription: t('works.meta_description'),
@@ -95,7 +95,7 @@ export async function getStaticProps({ locale }) {
       }),
       fetchAPI('/projects', {
         sort: ['ListPosition:asc'],
-        populate: ['Poster', 'tags', 'categories'],
+        populate: ['Poster', 'tags', 'categories', 'rtVideos.poster'],
         fields: ['Title', 'slug'],
         pagination: {
           pageSize: 100,

@@ -22,7 +22,7 @@ export default function ProjectItemWork({ name, link, children }) {
         md:text-1xl
         lg:pt-5"
         >
-          {name}
+         {name}
         </h3>
       </Link>
     </div>
