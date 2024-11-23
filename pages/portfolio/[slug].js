@@ -25,6 +25,7 @@ export default function Portfolio({ tag, projects, categories, data, menu, heade
       title: tag.attributes.Name,
     },
   ];
+
   return (
     <Layout
       data={data}
@@ -121,8 +122,8 @@ export async function getStaticProps({ params, locale }) {
       tag: matchingTags?.data[0],
       categories: categoriesRes.data,
       projects: projectsRes.data,
-    },
-    revalidate: 3600,
+    }, revalidate: 3600
+    
   };
 }
 

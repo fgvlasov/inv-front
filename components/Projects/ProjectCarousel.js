@@ -1,25 +1,30 @@
 import { SwiperVideo } from "./Swiper/SwiperVideo";
-import { SwiperPhotos } from "./Swiper/SwiperPhotos";
+import { SwiperVideo2 } from "./Swiper/SwiperVideo2";
+// import { SwiperPhotos } from "./Swiper/SwiperPhotos";
+import { SwiperMedia } from "./Swiper/SwiperMedia";
 
 export default function ProjectCarousel({
   photos,
-  poster,
   videoFiles,
-  verticalPhotos = false,
-}) {
-  
+  poster,
+  rtVideos,
+}) {  
   return (
     <>
       <div className="pt-2.5 pb-7 w-full mx-auto">
-        {videoFiles?.data ? (
-          <SwiperVideo videoSlides={videoFiles.data} poster={poster} />
-        ) : (
-          <SwiperPhotos
-            poster={poster?.data}
-            photos={photos}
-            verticalPhotos={verticalPhotos}
-          />
-        )}
+        {
+          (() => {
+            if (photos) {
+              return <SwiperMedia photos={photos} poster={poster?.data} />;
+            } else if (rtVideos.length > 0) {
+              return <SwiperVideo2 videoSlides={rtVideos} />;
+            } else if (videoFiles?.data) {
+              return <SwiperVideo videoSlides={videoFiles.data} poster={poster} />;
+            } else {
+              return <div>Ничего не найдено</div>;
+            }
+          })()
+        }
       </div>
     </>
   );

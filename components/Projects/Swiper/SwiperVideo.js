@@ -21,13 +21,19 @@ export const SwiperVideo = ({ videoSlides, poster }) => {
     };
   }, []);
 
+  function pauseVideosInSlide(slide) {
+    const videos = slide.querySelectorAll('video');
+    videos.forEach(video => {
+      if (!video.paused) {
+        video.pause();
+      }
+    });
+  }
+
   return (
     <div className="container !max-w-[1600px]">
       {/* Variant for 1 video */}
       <Swiper
-        onSlideChange={() => {
-          setStopVideo((x) => !x);
-        }}
         slidesPerView={1}
         centeredSlides={true}
         className="swiperVideo"

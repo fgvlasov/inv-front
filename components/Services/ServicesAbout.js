@@ -4,10 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Line from '@/components/ui/Line';
 import ServicesDoc from '@/components/ui/ServicesDoc';
-
+import BackgroundPlayer from 'next-video/background-player';
 export default function ServicesAbout({ about, servicesAbout }) {
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       <section
         className=" relative z-10 bg-cover pb-10 no-repeat
       md:pb-0 bg-center"
@@ -70,12 +70,12 @@ export default function ServicesAbout({ about, servicesAbout }) {
                       src={getStrapiMedia(
                         item.attributes.imagePresentationLink
                       )}
-                      width="389"
-                      height="275"
+                      width={389}
+                      height={275}
                       //   quality={100}
                       loading="lazy"
                       className="w-full rounded-4xl h-full object-cover"
-                      alt=""
+                      alt="alt"
                     />
                   </div>
 
@@ -119,14 +119,14 @@ export default function ServicesAbout({ about, servicesAbout }) {
           md:-mt-[108px] w-[72%] aspect-[286/347] "
                 >
                   <div className="absolute top-0 bottom-0 left-0 right-0">
-                    <img
+                    <Image
                       className="rounded-4xl w-full h-full"
                       src={getStrapiMedia(
                         item.attributes.imagePresentationLink
                       )}
-                      width="286"
+                      width={286}
+                      height={347}
                       loading="lazy"
-                      height="347"
                       alt=""
                       //   q={100}
                     />
@@ -182,17 +182,19 @@ export default function ServicesAbout({ about, servicesAbout }) {
           <Line variantColor="eclipse" />
         </div>
       </section>
-
-      <video
+      <BackgroundPlayer
+        src={getStrapiMedia(about.attributes.Video)}
+        width="100%"
+        height="100%"
         autoPlay
         loop
         muted
-        poster="/image/content/about.jpg"
-        className="absolute -z-100 top-0 bottom-0 w-full h-full object-cover bg-black"
+        poster="/image/videohive_poster.webp"
+        className="absolute -z-100 inset-0 object-cover !h-full bg-black"
       >
         <source src={getStrapiMedia(about.attributes.Video)} type="video/mp4" />
         <source src={getStrapiMedia(about.attributes.Video)} type="video/ogg" />
-      </video>
+      </BackgroundPlayer>
     </div>
   );
 }

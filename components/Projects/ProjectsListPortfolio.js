@@ -77,11 +77,7 @@ export default function ProjectsListPortfolio({
                       variant="imageBlock"
                     />{" "}
                     {project.attributes.tags.data.length > 0 && (
-                      <div
-                        className={
-                          "z-2 relative flex gap-1 uppercase flex-wrap"
-                        }
-                      >
+                      <div className={ "z-2 relative flex gap-1 uppercase flex-wrap" }>
                         {project.attributes.tags.data.map((x) => {
                           return (
                             <Tag
