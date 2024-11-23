@@ -48,7 +48,7 @@ export default function ProjectsListForMain({
                   >
                     <div className="rounded-l15 relative">
                       {project.attributes.Poster_for_mainPage.data != null && (
-                        <Image
+                        <img
                           src={getStrapiMedia(
                             project.attributes.Poster_for_mainPage
                               ? project.attributes.Poster_for_mainPage

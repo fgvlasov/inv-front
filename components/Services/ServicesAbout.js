@@ -66,7 +66,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                   className="bg-blackRussian relative flex flex-col rounded-4xl p-[25px] w-[72%] aspect-square"
                 >
                   <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full">
-                    <Image
+                    <img
                       src={getStrapiMedia(
                         item.attributes.imagePresentationLink
                       )}

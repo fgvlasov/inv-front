@@ -32,7 +32,7 @@ export const SwiperVideo2 = ({ videoSlides }) => {
                   aria-hidden="false"
                   allowFullScreen
                   allow="encrypted-media; picture-in-picture; web-share"
-                  >
+                >
                 </iframe>
               </div>
             </SwiperSlide>
@@ -51,22 +51,22 @@ export const SwiperVideo2 = ({ videoSlides }) => {
             {videoSlides.map((photo, index) => (
               <SwiperSlide key={index} style={{ flexShrink: 1 }}>
                 <div className="rounded-lr w-[266px] h-[150px] overflow-hidden">
-                {photo.poster.data == null
-                  ? <p className="flex items-center justify-center bg-gray w-full h-full text-white rounded-xl">Картинка не задана</p>
-                  :  <Image
-                    className="w-full h-full object-cover"
-                    width={266}
-                    height={150}
-                    alt={photo.poster.data?.attributes.alternativeText}
-                    src={`https://admin.invert.studio`+photo.poster.data?.attributes.url}
-                    style={{
-                      filter: !loaded ? "blur(70px)" : "none",
-                      transition: "filter 0.2s ease-out",
-                    }}
-                    onLoad={() => setLoaded(true)}
-                    loading="lazy"
-                  />
-                }
+                  {photo.poster.data == null
+                    ? <p className="flex items-center justify-center bg-gray w-full h-full text-white rounded-xl">Картинка не задана</p>
+                    :  <Image
+                        className="w-full h-full object-cover"
+                        width={266}
+                        height={150}
+                        alt={photo.poster.data?.attributes.alternativeText}
+                        src={`https://admin.invert.studio`+photo.poster.data?.attributes.url}
+                        style={{
+                        filter: !loaded ? "blur(70px)" : "none",
+                        transition: "filter 0.2s ease-out",
+                      }}
+                        onLoad={() => setLoaded(true)}
+                        loading="lazy"
+                    />
+                  }
                 </div>
               </SwiperSlide>
             ))}
