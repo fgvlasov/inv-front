@@ -11,7 +11,7 @@ export const SwiperVideo2 = ({ videoSlides }) => {
   
   return (
     <div className="relative container">
-      <div className="container relative overflow-hidden w-full h-full aspect-video">
+      <div className="container !max-w-[1600px] relative overflow-hidden w-full h-full aspect-video">
         <Swiper
           className="w-full h-full"
           scrollbar={{ draggable: true }}
