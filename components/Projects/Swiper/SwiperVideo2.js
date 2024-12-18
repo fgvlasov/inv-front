@@ -39,9 +39,9 @@ export const SwiperVideo2 = ({ videoSlides }) => {
         </Swiper>
       </div>
       {videoSlides.length > 1 && (
-        <div className="2xl:pt-12 xl:pt-12 lg:pt-7 pt-2 z-5 w-full h-full mx-auto container">
+        <div className="2xl:pt-12 !max-w-[1600px] xl:pt-12 lg:pt-7 pt-2 z-5 w-full h-full mx-auto container">
           <Swiper
-            slidesPerView={'auto'}
+            slidesPerView={"auto"}
             spaceBetween={20}
             scrollbar={{ draggable: true }}
             loop={true}
@@ -65,8 +65,8 @@ export const SwiperVideo2 = ({ videoSlides }) => {
                         photo.poster.data?.attributes.url
                       }
                       style={{
-                        filter: !loaded ? 'blur(70px)' : 'none',
-                        transition: 'filter 0.2s ease-out',
+                        filter: !loaded ? "blur(70px)" : "none",
+                        transition: "filter 0.2s ease-out",
                       }}
                       onLoad={() => setLoaded(true)}
                       loading="lazy"
