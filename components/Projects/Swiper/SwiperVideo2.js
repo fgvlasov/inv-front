@@ -59,6 +59,7 @@ export const SwiperVideo2 = ({ videoSlides }) => {
                       className="w-full h-full object-cover"
                       width={266}
                       height={150}
+                      quality={100}
                       alt={photo.poster.data?.attributes.alternativeText}
                       src={
                         `https://admin.invert.studio` +
