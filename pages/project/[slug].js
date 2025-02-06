@@ -31,6 +31,7 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
       title: project.attributes.Title,
     },
   ];
+  console.log(project.attributes.Iframe_mod);
     
   return (
     <Layout
@@ -45,7 +46,6 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
       variantSvg="darkSvg"
     >
       <Seo seo={seo} />
-
       <TitleSection text={project.attributes.Title} />
       {project.attributes.tags.data[0] && (
         <TagBlock tags={project.attributes.tags.data} />
@@ -54,7 +54,6 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
         <Line variantColor="grey" />
       </div>
       <BreadCrumbs links={breadCrumbsItems} />
-      
       <ProjectCarousel
         photos={project.attributes.ProjectSliderFotos.data}
         poster={project.attributes.Poster}
@@ -62,21 +61,18 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
         rtVideos={project.attributes.rtVideos}
         // verticalPhotos={project.attributes.Vertical_photos}
       />
-
       <ProjectAbout
         task={project.attributes.ProjectTask}
         done={project.attributes.ProjectDone}
         CustomerName={project.attributes.CustomerName}
         CustomerUrl={project.attributes.CustomerUrl}
       />
-
       <div className="container">
         <Line variantColor="grey" />
       </div>
       <div className="py-10 md:py-15 lg:py-18">
         <IntroCost />
       </div>
-
       <PortfolioCarousel
         title={t`project.other_projects`}
         projects={projectsOther}
@@ -84,6 +80,15 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
       <div className="container">
         <Line variantColor="grey" />
       </div>
+      {project.attributes.Iframe_mod &&
+      <div className="container hidden">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: project.attributes.Iframe_mod,
+          }}
+        ></div>
+      </div>
+      }
     </Layout>
   );
 }
@@ -95,7 +100,7 @@ export async function generateStaticParams() {
       pageSize: 100,
     },
   }
-);
+  );
 
   const projectsSlugPath = projectsSlug.data.map((project) => ({
     params: {
