@@ -44,3 +44,7 @@ input:focus {
 .bgBriefCost {
   background-position: center !important ;
 }
+
+.next-video-bg-video, .next-video-bg-poster {
+  height: 100%;
+}

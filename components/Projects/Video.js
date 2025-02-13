@@ -16,7 +16,7 @@ export default function Video({ poster, videofile, small = false }) {
           height="604"
           //   q={100}
           loading="lazy"
-          alt=""
+          alt="Video poster"
         />
       )}
     </div>

@@ -85,7 +85,6 @@ export default function FormService({ onSubmitForm }) {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        action=""
         method="get"
         className="flex flex-col pt-6 max-w-[562px] m-auto items-center justify-center pb-2.5
       md:pt-[37px] 
