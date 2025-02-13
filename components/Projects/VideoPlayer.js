@@ -42,8 +42,8 @@ export const VideoPlayer = ({
       className="w-full h-full relative rounded-lr overflow-hidden"
     >
       <div className="absolute bottom-15 w-full h-full z-10" onClick={handlePlay} />
-      <div className="absolute bottom-8 left-2 w-10 h-10 z-10" onClick={handlePlay} />
-      <video
+      {/* <div className="absolute bottom-8 left-2 w-10 h-10 z-10" onClick={handlePlay} /> */}
+      <video	
         ref={videoRef}
         poster={getLink(poster)}
         controls
@@ -66,7 +66,7 @@ export const VideoPlayer = ({
             <svg
               viewBox="0 0 36 43"
               className={`w-[36px] h-[43px] cursor-pointer ${small ? "" : "md:w-[86px] md:h-[86px]"
-                } `}
+              } `}
             >
               <path
                 d="M33.4217 17.2697C36.5342 19.231 36.5342 23.7688 33.4217 25.7301L7.85702 41.8395C4.52747 43.9376 0.191389 41.5448 0.191389 37.6093L0.19139 5.39047C0.191391 1.45501 4.52746 -0.937803 7.85701 1.16029L33.4217 17.2697Z"
@@ -85,7 +85,7 @@ export const VideoPlayer = ({
             <svg
               viewBox="0 0 36 43"
               className={`w-[36px] h-[43px] cursor-pointer ${small ? "" : "md:w-[86px] md:h-[86px]"
-                } `}
+              } `}
             >
               <path
                 d="M33.4217 17.2697C36.5342 19.231 36.5342 23.7688 33.4217 25.7301L7.85702 41.8395C4.52747 43.9376 0.191389 41.5448 0.191389 37.6093L0.19139 5.39047C0.191391 1.45501 4.52746 -0.937803 7.85701 1.16029L33.4217 17.2697Z"

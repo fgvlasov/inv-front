@@ -24,7 +24,7 @@ function FormInput({ type, id, placeholder, name, pattern, register }) {
           htmlFor="name"
           className="text-[15px] font-normal font-arial text-white flex mb-2"
         >
-          Имя<p className="text-mandy text-[15px] ml-1">*</p>
+          Имя<span className="text-mandy text-[15px] ml-1"> *</span>
         </label>
         <InputMask
           {...register(name, {
@@ -52,7 +52,7 @@ function FormInput({ type, id, placeholder, name, pattern, register }) {
         htmlFor="name"
         className="text-[15px] font-normal font-arial text-white flex mb-2"
       >
-        Имя<p className="text-mandy text-[15px] ml-1">*</p>
+        Имя<span className="text-mandy text-[15px] ml-1"> *</span>
       </label>
       <input
         className="bg-white rounded-[30px] w-full md:w-[320px] placeholder:text-fiord placeholder:font-arial placeholder:font-normal text-black font-arial font-normal mb-10 py-[15px] pl-[20px] xl:w-[320px] xl:mb-0
@@ -160,7 +160,6 @@ export default function FormConsultation({service}) {
         <FormProvider {...methods}>
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
-            action=""
             method="get"
             className=" mx-auto xl:m-0 flex flex-col items-center xl:items-start"
           >

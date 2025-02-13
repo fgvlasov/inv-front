@@ -39,7 +39,6 @@ export default function ServicesPrice({ data }) {
       <div className="block lg:flex lg:flex-row-reverse lg:mt-15 mb-10">
         <Accordion items={items} />
         <div
-          alt="#"
           className="w-[100%] rounded-2xl h-[255px] bg-cover bg-no-repeat mt-5 md:h-[400px] md:mt-10 lg:h-[415px] lg:mt-0 lg-w-[857px] lg:mr-7"
           style={{
             backgroundImage: `url(${getStrapiMedia(data.Project_price_image)})`,
