@@ -333,9 +333,7 @@
   position: absolute;
 }
 
-.next-video-bg-video, .next-video-bg-poster {
-  height: 100%;
-}
+
 .swiper-pagination-bullet {
   width: 10px !important;
   height: 10px !important;
