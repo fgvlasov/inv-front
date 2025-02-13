@@ -67,7 +67,6 @@ export default function ServicesAdvantages({ data }) {
           )}
         </ul>
         <div
-          alt="#"
           className="w-[100%] rounded-2xl h-[255px] bg-cover bg-no-repeat mt-10 md:h-[360px] md:mt-15  2xl:w-[858px] 2xl:h-[700px] 2xl:mt-0"
           style={{
             backgroundImage: `url(${getStrapiMedia(data.Adv_image)})`,
