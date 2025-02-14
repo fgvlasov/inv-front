@@ -18,10 +18,8 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <link
-          rel="shortcut icon"
-          href={getStrapiMedia(global?.attributes.favicon)}
-        />
+        <link rel="shortcut icon" href="/favicon.ico"  type="image/x-icon" />
+        {/*getStrapiMedia(global?.attributes.favicon)*/}
         <meta name="yandex-verification" content="4e608efa98929572" />
       </Head>
       <YandexMetrica>
