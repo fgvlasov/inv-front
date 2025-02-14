@@ -1,12 +1,11 @@
-import Tag from '@/components/ui/Tag';
 import { getStrapiMedia } from 'lib/media';
 import Image from 'next/image';
 import Link from 'next/link';
 import Line from '@/components/ui/Line';
 import ServicesDoc from '@/components/ui/ServicesDoc';
-import BackgroundPlayer from 'next-video/background-player';
 
 export default function ServicesAbout({ about, servicesAbout }) {
+  console.log(servicesAbout);
   return (
     <div className="relative w-full h-full">
       <section
@@ -76,7 +75,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                       //   quality={100}
                       loading="lazy"
                       className="w-full rounded-4xl h-full object-cover"
-                      alt={item.name}
+                      alt={item.attributes.name}
                     />
                   </div>
 
@@ -128,7 +127,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                       width={286}
                       height={347}
                       loading="lazy"
-                      alt=""
+                      alt={item.attributes.name}
                       //   q={100}
                     />
                   </div>
