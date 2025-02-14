@@ -5,7 +5,7 @@ import Line from '@/components/ui/Line';
 import ServicesDoc from '@/components/ui/ServicesDoc';
 
 export default function ServicesAbout({ about, servicesAbout }) {
-  console.log(servicesAbout);
+
   return (
     <div className="relative w-full h-full">
       <section
@@ -187,9 +187,10 @@ export default function ServicesAbout({ about, servicesAbout }) {
         id="video-player"
         src={getStrapiMedia(about.attributes.Video)}
         autoPlay={true}
-        poster="/image/videohive_poster.webp"
+        loop={true}
         muted={true}
-        className="absolute -z-100 inset-0 object-cover !h-full bg-black"
+        poster="/image/videohive_poster.webp"
+        className="absolute -z-100 inset-0 object-cover !h-full bg-black w-full"
       />
 
       {/*<BackgroundPlayer
