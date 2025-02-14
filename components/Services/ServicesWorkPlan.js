@@ -34,9 +34,9 @@ export default function ServicesWorkPlan({data}) {
   return (
     <section className="mt-10 container">
       <Line width="100%" variantColor="bg-light-grey"/>
-      <h1 className="font-arial font-normal text-3.5xl md:text-4xl leading-10 mt-10 w-full md:w-[560px] mb-8">
+      <h2 className="font-arial font-normal text-3.5xl md:text-4xl leading-10 mt-10 w-full md:w-[560px] mb-8">
         {data.Title}
-      </h1>
+      </h2>
       {workPlanItems && <WorkPlanSlider items={workPlanItems} />}
     </section>
   );
