@@ -19,9 +19,9 @@ import ServicesPrice from '@/components/Services/ServicesPrice';
 //import ServicesInfo from '@/components/Services/ServicesInfo';
 
 import ServicesChoice from '@/components/Services/ServicesChoise';
-import FormService from '@/components/ui/FormService';
+//import FormService from '@/components/ui/FormService';
 import FormConsultation from '@/components/ui/FormConsultation';
-import ServicesOtherServices from '@/components/Services/ServicesOtherServices';
+//import ServicesOtherServices from '@/components/Services/ServicesOtherServices';
 import ServicesThreePage from '@/components/Services/ServicesThreeOnPage';
 import ServicesWorkPlan from '@/components/Services/ServicesWorkPlan';
 import ServicesVideo from '@/components/Services/ServicesVideo';

@@ -8,18 +8,18 @@ export default function ServicesAdvantages({ data }) {
   }
   return (
     <div className="container mt-13">
-      <h1 className=" text-3.5xl text-black-russian3 font-arial font-normal mb-10 2xl:text-4xl">
+      <h2 className=" text-3.5xl text-black-russian3 font-arial font-normal mb-10 2xl:text-4xl">
         {data.Title}
-      </h1>
+      </h2>
       <div className="mb-10 flex flex-col md:mb-15 2xl:flex-row 2xl:mt-21 2xl:items-start 2xl:justify-between 2xl:mb-20">
         <ul className="list-none flex flex-wrap gap-5 2xl:gap-15 2xl:flex-col 2xl:pt-10">
           {data.Adv_1_text && (
             <li className="flex gap-5">
               <EnumCircle number="01" />
               <div className="mr-4">
-                <h2 className="font-arial font-normal text-2xl leading-7 text-black">
+                <h3 className="font-arial font-normal text-2xl leading-7 text-black">
                   {data.Adv_1_title}
-                </h2>
+                </h3>
                 <p className="font-arial font-normal text-base leading-5 text-black opacity-60 w-full md:w-[340px] mt-5 2xl:w-[590px]">
                   {data.Adv_1_text}
                 </p>
@@ -30,9 +30,9 @@ export default function ServicesAdvantages({ data }) {
             <li className="flex gap-5">
               <EnumCircle number="02" />
               <div className="mr-4">
-                <h2 className="font-arial font-normal text-2xl leading-7 text-black">
+                <h3 className="font-arial font-normal text-2xl leading-7 text-black">
                   {data.Adv_2_title}
-                </h2>
+                </h3>
                 <p className="font-arial font-normal text-base leading-5 text-black opacity-60 w-full md:w-[340px] mt-5 2xl:w-[590px]">
                   {data.Adv_2_text}  
                 </p>
@@ -43,9 +43,9 @@ export default function ServicesAdvantages({ data }) {
             <li className="flex gap-5">
               <EnumCircle number="03" />
               <div className="mr-4">
-                <h2 className="font-arial font-normal text-2xl leading-7 text-black">
+                <h3 className="font-arial font-normal text-2xl leading-7 text-black">
                   {data.Adv_3_title}
-                </h2>
+                </h3>
                 <p className="font-arial font-normal text-base leading-5 text-black opacity-60 w-full md:w-[340px] mt-5 2xl:w-[590px]">
                   {data.Adv_3_text}    
                 </p>
@@ -56,9 +56,9 @@ export default function ServicesAdvantages({ data }) {
             <li className="flex gap-5 ">
               <EnumCircle number="04" />
               <div className="mr-4">
-                <h2 className="font-arial font-normal text-2xl leading-7 text-black">
+                <h3 className="font-arial font-normal text-2xl leading-7 text-black">
                   {data.Adv_4_title}
-                </h2>
+                </h3>
                 <p className="font-arial font-normal text-base leading-5 text-black opacity-60 w-full md:w-[340px] mt-5 2xl:w-[590px]">
                   {data.Adv_4_text}
                 </p>

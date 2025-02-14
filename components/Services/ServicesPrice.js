@@ -33,9 +33,9 @@ export default function ServicesPrice({ data }) {
   //console.log(data);
   return (
     <section className="container mt-10">
-      <h1 className="mb-7 text-3.5xl w-full md:w-[335px] text-black-russian3 font-arial font-normal lg:text-4xl lg:w-full">
+      <h2 className="mb-7 text-3.5xl w-full md:w-[335px] text-black-russian3 font-arial font-normal lg:text-4xl lg:w-full">
         {data.Title}
-      </h1>
+      </h2>
       <div className="block lg:flex lg:flex-row-reverse lg:mt-15 mb-10">
         <Accordion items={items} />
         <div

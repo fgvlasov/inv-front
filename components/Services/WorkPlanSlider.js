@@ -64,9 +64,9 @@ export default function WorkPlanSlider({ items }) {
           >
             <div className="bg-white rounded-2xl p-10 w-[350px] h-[337px] md:w-[560px] md:h-[301px] duration-500">
               <EnumCircle number={(key + 1).toString().padStart(2, '0')} />
-              <h1 className="text-black font-arial font-normal text-1xl leading-8 mt-5">
+              <h3 className="text-black font-arial font-normal text-1xl leading-8 mt-5">
                 {item.title}
-              </h1>
+              </h3>
               <p className="text-black opacity-60 font-arial font-normal text-base mt-7 w-[253px] md:w-[410px] leading-[19.2px]">
                 {item.description}
               </p>

@@ -16,14 +16,14 @@ export default function ProjectItemWork({ name, link, children }) {
         >
           {children}
         </div>
-        <h3
+        <div
           className="text-xl text-black tracking-tight pb-0 border-b
         border-black-russian inline-block pt-[8px]
         md:text-1xl
         lg:pt-5"
         >
-         {name}
-        </h3>
+          {name}
+        </div>
       </Link>
     </div>
   );
