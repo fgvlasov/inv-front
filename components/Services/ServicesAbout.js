@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Line from '@/components/ui/Line';
 import ServicesDoc from '@/components/ui/ServicesDoc';
 import BackgroundPlayer from 'next-video/background-player';
+
 export default function ServicesAbout({ about, servicesAbout }) {
   return (
     <div className="relative w-full h-full">
@@ -29,7 +30,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
               {about.attributes.SloganPart1}
             </span>
             <span className="flex items-center flex-wrap lg:pt-3.8">
-              {' '}
+              {" "}
               <svg
                 className="text-royal-blue shrink-0 w-[43px] h-[33px]
                 md:w-auto md:h-auto md:mr-2.5
@@ -44,7 +45,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                   d="M34.2 9 51 26 34.2 43l-3.54-3.46 10.96-11.08H1v-4.92h40.62L30.66 12.46 34.2 9Z"
                   fill="#4574EF"
                 />
-              </svg>{' '}
+              </svg>{" "}
               {about.attributes.SloganPart2}
             </span>
           </h1>
@@ -75,7 +76,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
                       //   quality={100}
                       loading="lazy"
                       className="w-full rounded-4xl h-full object-cover"
-                      alt="alt"
+                      alt={item.name}
                     />
                   </div>
 
@@ -182,7 +183,17 @@ export default function ServicesAbout({ about, servicesAbout }) {
           <Line variantColor="eclipse" />
         </div>
       </section>
-      <BackgroundPlayer
+
+      <video
+        id="video-player"
+        src={getStrapiMedia(about.attributes.Video)}
+        autoPlay={true}
+        poster="/image/videohive_poster.webp"
+        muted={true}
+        className="absolute -z-100 inset-0 object-cover !h-full bg-black"
+      />
+
+      {/*<BackgroundPlayer
         src={getStrapiMedia(about.attributes.Video)}
         width="100%"
         height="100%"
@@ -194,7 +205,7 @@ export default function ServicesAbout({ about, servicesAbout }) {
       >
         <source src={getStrapiMedia(about.attributes.Video)} type="video/mp4" />
         <source src={getStrapiMedia(about.attributes.Video)} type="video/ogg" />
-      </BackgroundPlayer>
+      </BackgroundPlayer>*/}
     </div>
   );
 }

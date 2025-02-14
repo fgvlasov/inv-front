@@ -45,6 +45,10 @@ input:focus {
   background-position: center !important ;
 }
 
-.next-video-bg-video, .next-video-bg-poster {
-  height: 100%;
+#video-player {
+  position: absolute;
+  transform: translate(-50%, 0);
+  width: 100%;
+  bottom: 0 !important;
 }
+
