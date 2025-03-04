@@ -27,10 +27,12 @@
   "Blog invert": "Blog invert",
   "About service": "about service",
   "project": {
+	"about": "About:",
     "task": "Task",
     "done": "What is done",
     "customer": "Customer",
     "other_projects": "Other projects"
+
   },
   "brief": {
     "how_much": "How much cost project?",

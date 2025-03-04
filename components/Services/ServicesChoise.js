@@ -13,19 +13,19 @@ export default function ServicesChoice({ data }) {
         <div
           style={{
             backgroundImage: `url(${getStrapiMedia(data.Why_1_image)})`,
-            backgroundPosition: 'center',
+            backgroundPosition: "center",
           }}
           className="w-full h-[200px] mt-[10px] rounded-2xl md:h-[350px] 2xl:w-[543px] 2xl:h-[500px] 2xl:mt-0 bg-cover"
         />
         <div className="py-10 pl-10 mt-[10px] 2xl:mt-0 bg-white rounded-2xl w-full 2xl:w-[543px] 2xl:h-[500px]">
           <span className="block w-5 h-5  bg-blue rounded-full"></span>
-          <h3 className="text-3.5xl text-blue font-interTight leading-9 font-medium mt-5 mb-[74px]">
+          <div className="text-3.5xl text-blue font-interTight leading-9 font-medium mt-5 mb-[74px]">
             {data.Why_1_title}
-          </h3>
+          </div>
           {data.Why_1_title_mini && (
-            <h4 className="text-xl text-[#11111] font-interTight leading-6 font-medium mb-5">
+            <div className="text-xl text-[#11111] font-interTight leading-6 font-medium mb-5">
               {data.Why_1_title_mini}
-            </h4>
+            </div>
           )}
           <p className="whitespace-pre-wrap font-arial text-black text-base leading-5 w-full md:w-[400px]">
             {data.Why_1_text}
@@ -34,13 +34,13 @@ export default function ServicesChoice({ data }) {
 
         <div className="py-10 pl-10 bg-white rounded-2xl w-full mt-[10px] 2xl:w-[543px] 2xl:h-[500px] 2xl:mt-0">
           <span className="block w-5 h-5 bg-blue rounded-full"></span>
-          <h3 className="text-3.5xl text-blue font-interTight leading-9 font-medium mt-5 mb-[74px]">
+          <div className="text-3.5xl text-blue font-interTight leading-9 font-medium mt-5 mb-[74px]">
             {data.Why_2_title}
-          </h3>
+          </div>
           {data.Why_2_title_mini && (
-            <h4 className="text-xl text-[#11111] font-interTight leading-6 font-medium mb-5">
+            <div className="text-xl text-[#11111] font-interTight leading-6 font-medium mb-5">
               {data.Why_2_title_mini}
-            </h4>
+            </div>
           )}
           <p className="whitespace-pre-wrap font-arial text-black text-base leading-5 w-full md:w-[400px]">
             {data.Why_2_text}
@@ -49,7 +49,7 @@ export default function ServicesChoice({ data }) {
         <div
           style={{
             backgroundImage: `url(${getStrapiMedia(data.Why_2_image)})`,
-            backgroundPosition: 'center',
+            backgroundPosition: "center",
           }}
           className="w-full bg-cover h-[200px] mt-[10px] rounded-2xl md:h-[350px] 2xl:w-[543px] 2xl:h-[500px] 2xl:mt-0"
         />

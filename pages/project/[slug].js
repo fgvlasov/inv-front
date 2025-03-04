@@ -31,7 +31,7 @@ function Project({ project, projectsOther, data, menu, headerMenu }) {
       title: project.attributes.Title,
     },
   ];
-  console.log(project.attributes.Iframe_mod);
+  
     
   return (
     <Layout

@@ -15,9 +15,9 @@ export default function ServicesWhatIs({ data }) {
           <div className="flex flex-col">
             <EnumCircle number="01" className="mb-12" />
             <Line width="320px" variantColor="bg-light-grey" />
-            <h3 className="text-xl leading-7 text-black font-arial font-normal mt-6 mb-5">
+            <div className="text-xl leading-7 text-black font-arial font-normal mt-6 mb-5">
               {data.What_is_1_title}
-            </h3>
+            </div>
             <p className="text-base leading-5 text-black opacity-60 font-arial font-normal w-[full] md:w-[360px]">
               {data.What_is_1}
             </p>
@@ -27,9 +27,9 @@ export default function ServicesWhatIs({ data }) {
           <div className="flex flex-col">
             <EnumCircle number="02" className="mb-12" />
             <Line width="320px" variantColor="bg-light-grey" />
-            <h3 className="text-xl leading-7 text-black font-arial font-normal mt-6 mb-5">
+            <div className="text-xl leading-7 text-black font-arial font-normal mt-6 mb-5">
               {data.What_is_2_title}
-            </h3>
+            </div>
             <p className="text-base leading-5 text-black opacity-60 font-arial font-normal w-[full] md:w-[360px]">
               {data.What_is_2}
             </p>
@@ -39,9 +39,9 @@ export default function ServicesWhatIs({ data }) {
           <div className="flex flex-col">
             <EnumCircle number="03" className="mb-12" />
             <Line width="320px" variantColor="bg-light-grey" />
-            <h3 className="text-xl leading-7 text-black font-arial font-normal mt-6 mb-5">
+            <div className="text-xl leading-7 text-black font-arial font-normal mt-6 mb-5">
               {data.What_is_3_title}
-            </h3>
+            </div>
             <p className="text-base leading-5 text-black opacity-60 font-arial font-normal w-[full] md:w-[360px]">
               {data.What_is_3}
             </p>
