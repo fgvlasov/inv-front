@@ -50,25 +50,25 @@ export async function getStaticProps({ locale }) {
     contactRes,
     menuRes,
     agreementRes] = await Promise.all([
-      fetchAPI("/navigation/render/2", {
-        fields: ["title", "path"],
-        locale: locale,
-      }),
-      fetchAPI("/contact", {
-        fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
-        locale: locale,
-        populate: "ContactSocials",
-      }),
-      fetchAPI("/navigation/render/3", {
-        fields: ["title", "path"],
-        locale: locale,
-      }),
-      fetchAPI("/agreement", {
-        fields: ["Title", "TextEditor"],
-        locale: locale,
-        populate: "*",
-      }),
-    ]);
+    fetchAPI("/navigation/render/2", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/contact", {
+      fields: ["Title", "Address", "Phone", "Email", "PhoneLink"],
+      locale: locale,
+      populate: "ContactSocials",
+    }),
+    fetchAPI("/navigation/render/3", {
+      fields: ["title", "path"],
+      locale: locale,
+    }),
+    fetchAPI("/agreement", {
+      fields: ["Title", "TextEditor"],
+      locale: locale,
+      populate: "*",
+    }),
+  ]);
 
   return {
     props: {
