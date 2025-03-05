@@ -129,9 +129,9 @@ export default function FormConsultation({service}) {
   return (
     <section className="container mt-15 pb-[70px] mb:pd-[70px] lg:pb-[180px]">
       <div className="flex flex-col md:flex-row  justify-start gap-20 ">
-        <h3 className="grow-0 w-[329px] xl:w-[494px] text-3.5xl leading-[30px] xl:text-4xl xl:leading-[46px] text-black-russian3 font-arial font-normal">
+        <h2 className="grow-0 w-[329px] xl:w-[494px] text-3.5xl leading-[30px] xl:text-4xl xl:leading-[46px] text-black-russian3 font-arial font-normal">
           {service.Title}
-        </h3>
+        </h2>
         {service && (
           <div>
             {service.Form_Consult_text1 && (
@@ -150,9 +150,9 @@ export default function FormConsultation({service}) {
       <div className="bg-black opacity-90 bg-[url('/image/content/bg-intro-mob.png')]  md:bg-[url('/image/content/bg-intro.png')] md:bg-right-top-30 bg-no-repeat bg-cover rounded-[30px] w-full px-[35px] pt-[65px] pb-25 relative overflow-hidden xl:mt-15 lg:pl-[85px]">
         <span className="block absolute left-0 top-0 bg-[url(/image/svg/blueness_1.svg)] w-[250px] h-[250px] brightness-150"></span>
         <span className="hidden lg:block absolute left-0 bottom-0 bg-no-repeat bg-[url(/image/svg/blueness_2.svg)] w-[905px] h-[199px] brightness-150"></span>
-        <h3 className="text-3.5xl leading-[30px] md:text-4xl md:leading-[40px] xl:text-[60px] xl:leading-[60px] text-white font-normal font-arial mb-5 text-center xl:text-left">
+        <div className="text-3.5xl leading-[30px] md:text-4xl md:leading-[40px] xl:text-[60px] xl:leading-[60px] text-white font-normal font-arial mb-5 text-center xl:text-left">
           Отправить заявку
-        </h3>
+        </div>
         <p className="font-normal text-base leading-5 md:text-xl md:leading-[26px] xl:text-[22px] xl:leading-[28.6px] xl:w-[464px] mx-auto xl:m-0 font-arial text-center xl:text-left mb-16 text-white">
           Оставьте свои контактные данные и мы <br />
           вышлем вам Коммерческое предложение
