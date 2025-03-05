@@ -40,9 +40,9 @@ export default function Accordion({ items }) {
           item.title != null && (
             <li className="block border-none" key={itemIndex}>
               <div className="bg-white flex px-7 py-[27px] justify-between border-b-1 border-light-grey">
-                <h2 className="font-arial text-xl leading-7 font-normal text-[#222930]">
+                <h3 className="font-arial text-xl leading-7 font-normal text-[#222930]">
                   {item.title}
-                </h2>
+                </h3>
                 <img
                   src={
                     itemIndex === openedItem

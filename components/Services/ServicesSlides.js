@@ -52,13 +52,13 @@ export default function ServicesSlides({ from = "" }) {
             text={item.attributes.Slides.TypeofDocument}
             variant={item.attributes.Slides.BlackTagBg ? "black" : "white"}
           />
-          <h3
+          <div
             className={`text-xl tracking-tight text-${
               item.attributes.Slides.BlackTagBg ? "black" : "white"
             } mt-5`}
           >
             {item.attributes.name}
-          </h3>
+          </div>
           <ServicesSlidesButton
             text={item.attributes.Slides.DocumentTextForLink}
             link={getStrapiMedia(item.attributes.Slides.Document)}
