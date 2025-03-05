@@ -12,10 +12,10 @@ export default function FooterForm({ pillowColor }) {
     md:pt-16 md:pb-14
     lg:p-0 lg:mr-auto"
     >
-      <h3
+      <div
         className="textWhite text-4xl tracking-tight flex flex-col lg:text-6xl shrink-1">
         {t("footer.have_project")}<span className="text-blue mt-2.5">{t("footer.let_discuss")}</span>
-      </h3>
+      </div>
 
       <div
         className="flex flex-wrap gap-5 pt-9 

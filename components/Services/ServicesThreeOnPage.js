@@ -9,10 +9,10 @@ export default function ServicesThreePage({ service, items }) {
      mt-10"
     >
       <div className="flex flex-col md:flex-row  justify-start gap-20 ">
-        <h2 className="grow-0 w-[329px] xl:w-[494px] text-3.5xl leading-[30px] xl:text-4xl xl:leading-[46px] text-black-russian3 font-arial font-normal">
+        <div className="grow-0 w-[329px] xl:w-[494px] text-3.5xl leading-[30px] xl:text-4xl xl:leading-[46px] text-black-russian3 font-arial font-normal">
           Какие еще услуги мы <br />
           предоставляем
-        </h2>
+        </div>
         {service && (
           <div>
             {service.OtherServicesText1 && (
@@ -49,9 +49,9 @@ export default function ServicesThreePage({ service, items }) {
                 }}
               >
                 {' '}
-                <h3 className="text-white w-[283px] font-arial font-normal text-1xl leading-8">
+                <div className="text-white w-[283px] font-arial font-normal text-1xl leading-8">
                   {item.attributes.name}
-                </h3>
+                </div>
                 <p className="whitespace-pre-wrap text-white mt-8 w-[240px]">
                   {item.attributes.textPart1}
                 </p>

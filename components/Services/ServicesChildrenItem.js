@@ -21,12 +21,12 @@ export default function ServicesChildrenItem({
     relative w-full
     xl:shrink flex flex-col justify-between"
     >
-      <h3
+      <div
         className="text-3xl px-9 pb-12
       "
       >
         {title}
-      </h3>
+      </div>
       {image && (
         <img
           className="rounded-b-5xl w-full 
