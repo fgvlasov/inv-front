@@ -7,6 +7,13 @@ Disallow: /userfiles/
 Disallow: /VR/
 Disallow: /templates/
 Clean-param: block
+Clean-param: id /portfolio
+Clean-param: Name /services/visual_ru
+Clean-param: Name /services/modeling_ru
+Clean-param: Name /services/motion_video_ru
+Clean-param: callibri /services/modeling_ru
+Clean-param: callibri /services/visual_ru
+Clean-param: callibri /services/motion_video_ru
 
 Host: https://invert.studio
 Sitemap: https://invert.studio/sitemap_invert.xml
