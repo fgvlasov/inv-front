@@ -44,7 +44,7 @@ input:focus {
 .bgBriefCost {
   background-position: center !important ;
 }
-
+#test1 { display: block;}
 #video-player {
   position: absolute;
   transform: translate(-50%, 0);
