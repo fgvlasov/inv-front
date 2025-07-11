@@ -38,17 +38,18 @@ export default function ProjectsListPortfolio({
   return (
     <section className="bg-whisper relative z-10 rounded-5xl pb-25 pt-6 md:pt-[60px] text-blackRussian md:pb-12 lg:pt-12 lg:pb-9 lg:rounded-7xl">
       <div className="container flex flex-wrap md:md:m-0 lg:m-auto">
-        {categories.map((category) => (
-          <TagItemSection
-            key={category.id}
-            text={category.attributes.name}
-            color={String(category.id) === id ? "blue" : "white"}
-            onClick={() => handleCategoryClick(category.id)}
-          />
-        ))}
+        {categories
+          .filter((category) => category.id !== 13 && category.id !== 14)
+          .map((category) => (
+            <TagItemSection
+              key={category.id}
+              text={category.attributes.name}
+              color={String(category.id) === id ? "blue" : "white"}
+              onClick={() => handleCategoryClick(category.id)}
+            />
+          ))}
         <TagItemSection
           key="222"
-          
           text={t("services.allServices")}
           color={allServicesButtonColor}
           onClick={() => router.push("/portfolio")}
@@ -56,20 +57,13 @@ export default function ProjectsListPortfolio({
       </div>
       {projects && (
         <div className="px-3.8 lg:px-24.5 lg:pb-20">
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 750: 1, 1024: 2 }}
-            className="lg:max-w-[1746px] mx-auto"
-          >
+          <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 1, 1024: 2 }} className="lg:max-w-[1746px] mx-auto">
             <Masonry gutter="37px">
               {projects
                 .filter(filterProjects)
                 // .filter(filterByTag)
                 .map((project) => (
-                  <ProjectItemWork
-                    key={project.id}
-                    name={project.attributes.Title}
-                    link={project.attributes.slug}
-                  >
+                  <ProjectItemWork key={project.id} name={project.attributes.Title} link={project.attributes.slug}>
                     <ProjectItemImage
                       link={getStrapiMedia(project.attributes.Poster)}
                       width="398"
@@ -77,15 +71,9 @@ export default function ProjectsListPortfolio({
                       variant="imageBlock"
                     />{" "}
                     {project.attributes.tags.data.length > 0 && (
-                      <div className={ "z-2 relative flex gap-1 uppercase flex-wrap" }>
+                      <div className={"z-2 relative flex gap-1 uppercase flex-wrap"}>
                         {project.attributes.tags.data.map((x) => {
-                          return (
-                            <Tag
-                              key={x.attributes.Name}
-                              text={x.attributes.Name}
-                              href={x.attributes.slug}
-                            />
-                          );
+                          return <Tag key={x.attributes.Name} text={x.attributes.Name} href={x.attributes.slug} />;
                         })}
                       </div>
                     )}
