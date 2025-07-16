@@ -14,7 +14,7 @@ export default function NavFooter({ menu, variant }) {
     >
       <ul
         className="grid 
-      md:grid-cols-2 md:grid-rows-4 md:grid-flow-col md:max-w-[62%]
+      md:grid-cols-2 md:grid-rows-5 md:grid-flow-col md:max-w-[62%]
       lg:max-w-none
       "
       >

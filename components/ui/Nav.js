@@ -10,6 +10,7 @@ export default function Nav({ menu }) {
   if (!menu) {
     return <Loading />;
   }
+  //console.log(menu);
 
   return (
     <nav
@@ -23,7 +24,7 @@ export default function Nav({ menu }) {
         {menu
           .filter((item) => !item.parent)
           .map((item) =>
-            item.collapsed ? (
+            item.id == "15" ? (
               <li
                 key={item.id}
                 className="group relative"
