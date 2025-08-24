@@ -78,9 +78,9 @@ export default function FormBrief({ visobjs, categories }) {
         >
           Оставьте заявку, либо звоните, мы пообщаемся и сами все за вас
           заполним:
-          <Link href="tel:+78122010007">
+          <Link href="tel:+78129092533">
             {" "}
-            +7&nbsp;812&nbsp;201&nbsp;00&nbsp;07
+            8&nbsp;(812)&nbsp;909-25-33
           </Link>
         </p>
         <TagsBrief
