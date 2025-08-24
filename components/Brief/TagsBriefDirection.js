@@ -19,11 +19,12 @@ export default function TagsBriefDirection({
   title,
   setDirection,
   direction,
-  category,
+  category_id,
 }) {
+  console.log(direction);
   const drawDirectionOptions = () => {
-    switch (category?.attributes?.name) {
-      case ARCHITECH_VIS:
+    switch (category_id) {
+      case 1:
         return categories.map((elem, index) => (
           <TagItemBrief
             key={elem.attributes.name}
@@ -33,11 +34,11 @@ export default function TagsBriefDirection({
                 : "white"
             }
             text={elem.attributes.name}
-            onClick={index < 2 ? () => setDirection(elem) : null}
+            onClick={index < 2 ? () => setDirection(elem.id) : null}
             className={index < 2 ? "" : "opacity-25"}
           />
         ));
-      case MOTION:
+      case 3:
         return categories.map((elem, index) => (
           <TagItemBrief
             key={elem.attributes.name}
@@ -47,7 +48,7 @@ export default function TagsBriefDirection({
                 : "white"
             }
             text={elem.attributes.name}
-            onClick={index > 1 ? () => setDirection(elem) : null}
+            onClick={index > 1 ? () => setDirection(elem.id) : null}
             className={index > 1 ? "" : "opacity-25"}
           />
         ));

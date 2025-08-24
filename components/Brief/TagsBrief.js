@@ -3,10 +3,9 @@ import TagItemBrief from "./TagItemBrief";
 export default function TagsBrief({
   title,
   categories,
-  setCategory,
-  category,
+  setCategory_id,
+  category_id,
 }) {
-  
   return (
     <div
       className="pt-10 pb-1.5
@@ -24,12 +23,12 @@ export default function TagsBrief({
           <TagItemBrief
             key={elem.attributes.name}
             color={
-              category?.id == elem.id
+              category_id === elem.id
                 ? "blue"
                 : "white"
             }
             text={elem.attributes.name}
-            onClick={() => setCategory(elem)}
+            onClick={() => setCategory_id(elem.id)}
           />
         ))}
       </div>
