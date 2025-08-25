@@ -31,14 +31,14 @@ import {
   VISUALIZATION_OBJECT,
 } from "./fieldNames";
 
-export const ARCHITECH_VIS = "Архитектурная визуализация";
+export const ARCHITECH_VIS = "Архитектурная визуализация для ваших проектов";
 export const INTERIOR = "Интерьерная";
 export const EXTERIOR = "Экстерьерная";
 export const PRODUCT_VIS = "Продуктовая 3D визуализация";
-export const MOTION = "Моушн & Видеопродакшн";
-export const ANIMATION = "Моушн 3D анимация";
+export const MOTION = "Моушн дизайн & Видеопродакшн";
+export const ANIMATION = "3D Анимация: От Идеи до Воплощения Вашего Проекта";
 export const VIDEO_KEY = "Видеопродакшн под ключ";
-export const MODELING = "3D моделирование";
+export const MODELING = "Интерактивное 3D моделирование для бизнеса";
 
 const interiorSelectOptions = [
   { attributes: { Title: "Квартира" } },
