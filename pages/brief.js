@@ -80,6 +80,7 @@ export async function getStaticProps({ locale }) {
     }),
     fetchAPI('/categories', {
       fields: ['name', 'slug'],
+      filters: { id: { $notIn: [13, 14] } },
       locale: locale,
     }),
     fetchAPI('/visualization-objects', {
